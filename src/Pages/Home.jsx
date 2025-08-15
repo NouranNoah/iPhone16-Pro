@@ -5,12 +5,12 @@ import CloserLookSection from '../components/CloserLookSection/CloserLookSection
 import StrengthBeauty from '../components/StrengthBeauty/StrengthBeauty'
 import CameraControl from '../components/CameraControl/CameraControl'
 import Cinemasterful from '../components/Cinemasterful/Cinemasterful'
-import Qualityvideo from '../components/Cinemasterful/Qualityvideo';
 import AudioMix from '../components/AudioMix/AudioMix'
 import WideCamera from '../components/WideCamera/WideCamera'
 import PhotographicStyle from '../components/PhotographicStyle/PhotographicStyle'
 import Phone3 from '../components/Phone3/Phone3'
 import A18ProSection from '../components/A18ProSection/A18ProSection'
+import Qualityvideo from '../components/Cinemasterful/qualityvideo'
 
 // import SSS from '../components/SSS'
 

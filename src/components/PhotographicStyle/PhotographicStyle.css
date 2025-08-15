@@ -11,15 +11,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-}
-.contentPhoto .pPhotoStleSection{
-  color: rgba(255, 255, 255, 0.552);
-  font-size: 24px;
-  padding: 7% 15%;
-  font-weight: 600;
-}
-.pPhotoStleSection span{
-  color: white;
+  overflow: hidden;
 }
 
 .photo {
@@ -61,7 +53,7 @@
 
 .contentPhoto h1 p {
   font-weight: bold;
-  color: #fffaf6; 
+  color: #fffaf6;
   text-shadow:
      0 0 5px #9b6c30,
      0 0 10px #9b6c30,
@@ -69,6 +61,22 @@
      0 0 30px #9b6c30,
      0 0 40px #9b6c30;
   animation: glow 4s ease-in-out infinite alternate;
+}
+
+.pPhotoStleSection {
+  color: rgba(255, 255, 255, 0.552);
+  font-size: 24px;
+  padding: 7% 15%;
+  font-weight: 600;
+}
+
+.pPhotoStleSection span {
+  color: white;
+}
+
+/* Spacer لتجنب تغطية النص بعد السيكشن */
+.afterSectionSpacer {
+  height: 100vh; /* نفس ارتفاع السيكشن */
 }
 
 /* ===== Media Queries ===== */
@@ -94,7 +102,7 @@
   }
 
   .photographic-section {
-    height: 80vh; /* تقلل الطول للموبايل */
+    height: 80vh;
   }
 }
 
@@ -107,8 +115,9 @@
   .photographic-section {
     height: 50vh;
   }
-  .contentPhoto .pPhotoStleSection {
-  font-size: 20px;
-  padding: 7% 10%;
+
+  .pPhotoStleSection {
+    font-size: 20px;
+    padding: 7% 10%;
   }
 }

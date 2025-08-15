@@ -23,18 +23,16 @@ export default function PhotographicStyle() {
           end: "+=250%", // مدة الحركة
           scrub: true,
           pin: true,
-          pinSpacing: true, // يسيب مساحة بعد الحركة
+          pinSpacing: true,
         },
       });
 
-      // الصورة الأولى
       tl.fromTo(
         imagesRef.current[0],
         { scale: 1 },
         { scale: 1.2, duration: 1, ease: "power1.inOut" }
       );
 
-      // الصورة الثانية + الخط
       tl.fromTo(
         imagesRef.current[1],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
@@ -48,7 +46,6 @@ export default function PhotographicStyle() {
         "<"
       );
 
-      // الصورة الثالثة + الخط
       tl.fromTo(
         imagesRef.current[2],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
@@ -71,6 +68,7 @@ export default function PhotographicStyle() {
       <h1>
         Choose your <p>Photographic Style</p>. Change it up. Change it back.
       </h1>
+
       <section className="photographic-section" ref={sectionRef}>
         <div className="image-container">
           {[img1, img2, img3].map((src, i) => (
@@ -85,7 +83,14 @@ export default function PhotographicStyle() {
           <div className="moving-line" ref={lineRef}></div>
         </div>
       </section>
-      <p className="pPhotoStleSection">Our latest generation of Photographic Styles gives you greater creative flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime.</p>
+
+      {/* مسافة بعد السيكشن لتجنب التغطية */}
+      <div className="afterSectionSpacer"></div>
+
+      <p className="pPhotoStleSection">
+        Our latest generation of Photographic Styles gives you greater creative
+        flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime.
+      </p>
     </div>
   );
 }
