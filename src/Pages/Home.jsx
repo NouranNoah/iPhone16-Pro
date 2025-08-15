@@ -5,7 +5,7 @@ import CloserLookSection from '../components/CloserLookSection/CloserLookSection
 import StrengthBeauty from '../components/StrengthBeauty/StrengthBeauty'
 import CameraControl from '../components/CameraControl/CameraControl'
 import Cinemasterful from '../components/Cinemasterful/Cinemasterful'
-import Qualityvideo from '../components/Cinemasterful/qualityvideo'
+import Qualityvideo from '../components/Cinemasterful/Qualityvideo';
 import AudioMix from '../components/AudioMix/AudioMix'
 import WideCamera from '../components/WideCamera/WideCamera'
 import PhotographicStyle from '../components/PhotographicStyle/PhotographicStyle'
@@ -23,7 +23,7 @@ export default function Home() {
       <StrengthBeauty />
       <CameraControl />
       <Cinemasterful />
-      <Qualityvideo />
+      <QualityVideo />
       {/* <Phone3 /> */}
       <AudioMix />
       <WideCamera />
