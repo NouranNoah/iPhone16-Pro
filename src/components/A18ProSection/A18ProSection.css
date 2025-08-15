@@ -1,0 +1,115 @@
+.A18ProSection {
+  position: relative;
+  width: 100%;
+  padding: 5% 0;
+  background-color: #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.A18ProSection video {
+  width: 100%;
+  height: fit-content;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.A18ProSection h1 {
+  color: rgba(255, 255, 255, 0.728);
+  width: 55%;
+  font-size: 70px;
+  margin-bottom: 5%;
+  line-height: 1;
+  width: 40%;
+}
+
+.A18ProSection h1 p {
+  font-weight: bold;
+  font-size: 70px;
+  color: #fffaf6; 
+  text-shadow:
+     0 0 5px #9b6c30,
+     0 0 10px #9b6c30,
+     0 0 20px #9b6c30,
+     0 0 30px #9b6c30,
+     0 0 40px #9b6c30;
+  animation: glow 4s ease-in-out infinite alternate;
+}
+
+.A18ProSection p {
+  font-size: 22px;
+  line-height: 1.6;
+  font-weight: 600;
+  max-width: 800px;
+  color: rgba(255, 255, 255, 0.574);
+}
+
+.A18ProSection p span {
+    color: white;
+}
+
+.specs {
+  display: flex;
+  gap: 20%;
+  margin-top: 10%;
+  padding: 2% 15%;
+}
+
+.specs > div {
+  flex: 1;
+  text-align: left;
+}
+
+.specs p {
+    border-top:1px solid white ;
+  margin-bottom: 10px;
+  padding:5% 0 ;
+  font-size: 28px;
+  margin-bottom: 25%;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .A18ProSection h1 {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .specs {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .specs > div {
+    text-align: center;
+  }
+
+  .A18ProSection h1 {
+    font-size: 28px;
+  }
+
+  .A18ProSection h1 p {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .A18ProSection h1,.A18ProSection h1 p {
+    font-size: 34px;
+    width: 90%;
+    margin-top: 5%;
+  }
+  .A18ProSection h1 p {
+    margin-left: 3%;
+  }
+  .A18ProSection p {
+  font-size: 17px;
+}
+
+}

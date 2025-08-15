@@ -1,0 +1,122 @@
+.cinemaWrapper {
+  height: 130vh;
+  background-color: black;
+  padding: 0;
+  padding-bottom: 30px;
+  text-align: center;
+}
+.cinemaSection {
+  position: sticky;
+  top: 0;
+  left: 0%;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+
+.cinemaSection {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.vidCinema {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease;
+}
+
+.imgCinema {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.cinemaWrapper h1{
+  font-size: 70px;
+  position: relative;
+  z-index: 222;
+  color: white;
+  width: 80%;
+}
+.cinemaSection p{
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 14px;
+}
+/* /////////////////////////////////////////////////// */
+
+.qualityVideo{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 15%;
+  padding-bottom: 10px;
+  background-color: black;
+  margin-top: -10%;
+}
+.qualityVideo .textVideo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.textVideo p{
+  flex: 1;
+  font-size: 20px;
+}
+.textVideo h2{
+  padding: 0 5%;
+  flex: 1;
+  font-size: 40px;
+  margin-bottom: 15%;
+}
+.qualityVideo .textVideo span, .qualityVideo h2{
+  color: white;
+}
+.qualityVideo .textVideo p{
+  color: rgba(255, 255, 255, 0.451);
+}
+
+@media (max-width: 768px) {
+  .cinemaSection{
+    height: 80vh;
+  }
+  .cinemaSection h1{
+    font-size: 50px;
+  }
+  .qualityVideo .textVideo {
+    flex-direction: column;
+  }
+  .textVideo h2 {
+    font-size: 28px;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .textVideo p{
+    font-size: 20px;
+  }
+  .cinemaWrapper{
+    height: 80vh;
+  }
+  .qualityVideo {
+    gap: 60px;
+    flex-direction: column;
+    padding-bottom: 25%;
+  }
+}

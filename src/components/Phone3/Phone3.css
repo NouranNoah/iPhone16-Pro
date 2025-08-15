@@ -1,0 +1,291 @@
+.Phone3Section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* تغيير لـ 100vh لإيقاف السكرول تماماً */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  scroll-snap-align: start;
+}
+
+.intro-text {
+  position: sticky;
+  top: 5%;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.intro-text p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.scrolPhotos {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  align-items: center;
+  gap: 60px;
+}
+
+.text-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.text-content {
+  text-align: left;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-in-out;
+}
+
+.text-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s ease-in-out 0.3s;
+  line-height: 1.2;
+}
+
+.text-title.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.text-description {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin: 0;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s ease-in-out 0.5s;
+  color: #e0e0e0;
+}
+
+.text-description.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 600px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-image.active {
+  opacity: 1;
+}
+
+/* مؤشر التقدم */
+.progress-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 30;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+.progress-dot.completed {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* مؤشر الاتجاه */
+.direction-indicator {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 30;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .text-section {
+    order: 2;
+    padding: 20px;
+  }
+  
+  .image-section {
+    order: 1;
+    height: 50%;
+  }
+  
+  .intro-text {
+    top: 2%;
+    max-width: 95%;
+    padding: 15px;
+  }
+  
+  .intro-text p {
+    font-size: 1rem;
+  }
+  
+  .text-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .text-description {
+    font-size: 1.1rem;
+  }
+  
+  .scroll-image {
+    width: 250px;
+    height: 500px;
+  }
+  
+  .progress-indicator {
+    bottom: 20px;
+  }
+  
+  .progress-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .direction-indicator {
+    right: 20px;
+    font-size: 1.5rem;
+  }
+}
+
+/* تحسينات للشاشات المتوسطة */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    gap: 40px;
+    padding: 0 30px;
+  }
+  
+  .text-title {
+    font-size: 2.5rem;
+  }
+  
+  .text-description {
+    font-size: 1.2rem;
+  }
+  
+  .scroll-image {
+    width: 280px;
+    height: 560px;
+  }
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1200px) {
+  .content-wrapper {
+    max-width: 1600px;
+    gap: 80px;
+  }
+  
+  .text-title {
+    font-size: 3.5rem;
+  }
+  
+  .text-description {
+    font-size: 1.4rem;
+  }
+  
+  .scroll-image {
+    width: 350px;
+    height: 700px;
+  }
+}

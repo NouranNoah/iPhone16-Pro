@@ -1,0 +1,129 @@
+.CloserLookSectionContent {
+  padding: 90px;
+  background-color: black;
+}
+.CloserLookSectionContent h1 {
+  color: #fff;
+  font-size: 50px;
+  margin-bottom: 3%;
+}
+.colorsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slideColor {
+  position: relative;
+}
+
+.slideColor img {
+  width: 100%;
+  border-radius: 16px;
+  opacity: 1; 
+  transform: scale(1);
+  transition: all 0.6s ease;
+}
+.slideColor img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.slideColor img.animate-show {
+  opacity: 0;
+  transform: scale(0.97);
+  animation: fadeIn 0.6s ease forwards; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.allcolor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 20px;
+}
+.allcolor p {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #ffffffb7;
+  font-weight: 500;
+  opacity: 1;
+  transition: all 0.6s ease;
+  background-color: #3c3b3b62;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.allcolor p.animate-show {
+  opacity: 0;
+  animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pointsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 15px;
+  margin-top: 30px;
+  background: #3c3b3b;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+.pointsSection span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pointsSection span.activeC {
+  border: 3px solid #0076DF;
+}
+@media (max-width: 768px) {
+  .CloserLookSectionContent h1 {
+    font-size: 27px;
+  }
+  .CloserLookSectionContent {
+    padding: 50px 30px;
+  }
+  .allcolor p {
+    font-size: 10px;
+  }
+  .pointsSection {
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .pointsSection span {
+    width: 20px;
+    height: 20px;
+  }
+  .slideColor img {
+    margin-top: 10px;
+  }
+}

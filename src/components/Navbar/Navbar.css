@@ -1,0 +1,142 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.NavbarContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: #fff;
+  position: relative; 
+  transition: background-color 0.5s ease;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  font-weight: 100;
+  font-size: 17px;
+}
+
+.nav-links li {
+  color: rgb(201, 201, 201);
+  cursor: pointer;
+  transition: color 0.1s ease;
+}
+.nav-links li:hover { color: #fff; }
+.NavbarContent:has(.nav-links li:hover) {
+  background-color: #171717;
+}
+.NavbarContent:has(.mega-menu.open) {
+  background-color: #171717;
+}
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  width: 100%;
+  background: #171717;
+  z-index: 1000;
+
+  
+  opacity: 0;
+  transform: translateY(-12px);
+  max-height: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    max-height 0.4s ease;
+}
+
+
+.mega-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  gap: 60px;
+}
+
+
+.mega-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 700px;
+  pointer-events: auto;
+}
+
+.mega-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.mega-column h4 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.mega-column ul { list-style: none; }
+.mega-column ul li {
+  padding: 6px 0;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+.mega-column ul li:hover { color: #fff; }
+
+
+.NavbarContent i {
+  color: rgb(201, 201, 201);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.NavbarContent i:hover { color: #fff; }
+
+.mobile-menu-icon {
+  display: none;
+  font-size: 22px;
+}
+
+
+.mobile-menu {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  background: #171717;
+  color: #fff;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.mobile-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: block; 
+  }
+  .NavbarContent {
+    justify-content: space-between;
+  }
+}
