@@ -176,3 +176,41 @@
   color: white;
 }
 
+@media (max-width: 1024px) {
+  .contentPhoto h1 {
+    width: 70%;
+    font-size: 50px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .contentPhoto {
+    padding: 0 3%;
+  }
+
+  .contentPhoto h1 {
+    width: 90%;
+    font-size: 42px;
+    margin-bottom: 10%;
+  }
+
+  .photographic-section {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentPhoto h1 {
+    font-size: 32px;
+  }
+
+  .photographic-section {
+    height: 50vh;
+  }
+
+  .pPhotoStleSection {
+    font-size: 20px;
+    padding: 7% 10%;
+  }
+} 
