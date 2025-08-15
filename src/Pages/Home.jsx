@@ -28,11 +28,10 @@ export default function Home() {
       {/* <Phone3 /> */}
       <AudioMix />
       <WideCamera />
-      <PhotographicStyle />
+      {/* <PhotographicStyle /> */}
       <A18ProSection />
       {/* <Significant /> */}
       {/* <SSS /> */}
-      {/* <HighlightsSection /> */}
     </div>
   )
 }
