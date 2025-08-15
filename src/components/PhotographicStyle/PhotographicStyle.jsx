@@ -20,39 +20,45 @@ export default function PhotographicStyle() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=250%", // مدة الحركة
-          scrub: true,
+          end: "+=300%", // مساحة كافية للحركة بين الصور
           pin: true,
           pinSpacing: true,
+          scrub: 1,
+          snap: {
+            snapTo: [0, 0.33, 0.66, 1], // كل صورة نقطة توقف
+            duration: 0.3,
+            ease: "power1.inOut",
+          },
         },
       });
 
+      // الصورة الأولى
       tl.fromTo(
         imagesRef.current[0],
         { scale: 1 },
         { scale: 1.2, duration: 1, ease: "power1.inOut" }
       );
 
+      // الصورة الثانية
       tl.fromTo(
         imagesRef.current[1],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
         { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
         "+=0.3"
-      );
-      tl.fromTo(
+      ).fromTo(
         lineRef.current,
         { x: "-100vw" },
         { x: "100vw", duration: 1, ease: "none" },
         "<"
       );
 
+      // الصورة الثالثة
       tl.fromTo(
         imagesRef.current[2],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
         { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
         "+=0.3"
-      );
-      tl.fromTo(
+      ).fromTo(
         lineRef.current,
         { x: "100vw" },
         { x: "-100vw", duration: 1, ease: "none" },
@@ -84,12 +90,14 @@ export default function PhotographicStyle() {
         </div>
       </section>
 
-      {/* مسافة بعد السيكشن لتجنب التغطية */}
-      <div className="afterSectionSpacer"></div>
+      {/* مسافة بعد السيكشن لتجنب تغطية السكاشن التالية */}
+      <div className="afterSectionSpacer" style={{ height: "0vh" }}></div>
 
       <p className="pPhotoStleSection">
         Our latest generation of Photographic Styles gives you greater creative
-        flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime.
+        flexibility than ever before, so you can{" "}
+        <span>make every photo even more you.</span> And thanks to advances in
+        our image pipeline, you can now reverse any style, anytime.
       </p>
     </div>
   );
