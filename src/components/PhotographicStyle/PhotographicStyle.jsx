@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,58 +13,33 @@ gsap.registerPlugin(ScrollTrigger);
 export default function PhotographicStyle() {
   const sectionRef = useRef(null);
   const imagesRef = useRef([]);
-  const lineRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=300%", // مساحة كافية للحركة بين الصور
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          snap: {
-            snapTo: [0, 0.33, 0.66, 1], // كل صورة نقطة توقف
-            duration: 0.3,
-            ease: "power1.inOut",
+      const images = imagesRef.current;
+
+      images.forEach((img, index) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: img,
+            start: "top center",
+            end: "bottom center",
+            scrub: true,
           },
-        },
+        });
+
+        // Zoom In لكل صورة
+        tl.fromTo(
+          img,
+          { scale: 1 },
+          { scale: 1.2, duration: 1, ease: "power1.inOut" }
+        );
+
+        // لو الصورة الأخيرة → نعمل Zoom Out في النهاية
+        if (index === images.length - 1) {
+          tl.to(img, { scale: 1, duration: 1, ease: "power1.inOut" });
+        }
       });
-
-      // الصورة الأولى
-      tl.fromTo(
-        imagesRef.current[0],
-        { scale: 1 },
-        { scale: 1.2, duration: 1, ease: "power1.inOut" }
-      );
-
-      // الصورة الثانية
-      tl.fromTo(
-        imagesRef.current[1],
-        { clipPath: "inset(0 100% 0 0)", scale: 1 },
-        { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
-        "+=0.3"
-      ).fromTo(
-        lineRef.current,
-        { x: "-100vw" },
-        { x: "100vw", duration: 1, ease: "none" },
-        "<"
-      );
-
-      // الصورة الثالثة
-      tl.fromTo(
-        imagesRef.current[2],
-        { clipPath: "inset(0 100% 0 0)", scale: 1 },
-        { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
-        "+=0.3"
-      ).fromTo(
-        lineRef.current,
-        { x: "100vw" },
-        { x: "-100vw", duration: 1, ease: "none" },
-        "<"
-      );
     });
 
     return () => ctx.revert();
@@ -71,34 +47,20 @@ export default function PhotographicStyle() {
 
   return (
     <div className="contentPhoto">
-      <h1>
-        Choose your <p>Photographic Style</p>. Change it up. Change it back.
-      </h1>
-
+      <h1>Choose your <p>Photographic Style.</p> Change it up. Change it back.</h1>
       <section className="photographic-section" ref={sectionRef}>
-        <div className="image-container">
-          {[img1, img2, img3].map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`img-${i}`}
-              className="photo"
-              ref={(el) => (imagesRef.current[i] = el)}
-            />
-          ))}
-          <div className="moving-line" ref={lineRef}></div>
+      {[img1, img2, img3].map((src, i) => (
+        <div className="image-container" key={i}>
+          <img
+            src={src}
+            alt={`photo-${i}`}
+            className="photo"
+            ref={(el) => (imagesRef.current[i] = el)}
+          />
         </div>
-      </section>
-
-      {/* مسافة بعد السيكشن لتجنب تغطية السكاشن التالية */}
-      <div className="afterSectionSpacer" style={{ height: "0vh" }}></div>
-
-      <p className="pPhotoStleSection">
-        Our latest generation of Photographic Styles gives you greater creative
-        flexibility than ever before, so you can{" "}
-        <span>make every photo even more you.</span> And thanks to advances in
-        our image pipeline, you can now reverse any style, anytime.
-      </p>
+      ))}
+    </section>
+    <p className="pPhotoStleSection">Our latest generation of Photographic Styles gives you greater creative flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime. </p>
     </div>
   );
 }

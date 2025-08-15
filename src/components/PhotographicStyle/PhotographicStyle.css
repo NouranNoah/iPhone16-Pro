@@ -1,4 +1,4 @@
-.photographic-section {
+/* .photographic-section {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -74,14 +74,12 @@
   color: white;
 }
 
-/* Spacer لتجنب تغطية النص بعد السيكشن */
+
 .afterSectionSpacer {
-  height: 100vh; /* نفس ارتفاع السيكشن */
+  height: 100vh; 
 }
 
-/* ===== Media Queries ===== */
 
-/* Large Tablets */
 @media (max-width: 1024px) {
   .contentPhoto h1 {
     width: 70%;
@@ -89,7 +87,7 @@
   }
 }
 
-/* Mobile */
+
 @media (max-width: 768px) {
   .contentPhoto {
     padding: 0 3%;
@@ -106,7 +104,6 @@
   }
 }
 
-/* Very small devices */
 @media (max-width: 480px) {
   .contentPhoto h1 {
     font-size: 32px;
@@ -120,5 +117,62 @@
     font-size: 20px;
     padding: 7% 10%;
   }
+} */
+
+
+ .photographic-section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+}
+.contentPhoto h1 {
+  color: rgba(255, 255, 255, 0.728);
+  width: 55%;
+  font-size: 70px;
+  margin-bottom: 5%;
+  line-height: 1;
+}
+
+.contentPhoto h1 p {
+  font-weight: bold;
+  color: #fffaf6;
+  text-shadow:
+     0 0 5px #9b6c30,
+     0 0 10px #9b6c30,
+     0 0 20px #9b6c30,
+     0 0 30px #9b6c30,
+     0 0 40px #9b6c30;
+  animation: glow 4s ease-in-out infinite alternate;
+}
+.contentPhoto {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+}
+.pPhotoStleSection {
+  color: rgba(255, 255, 255, 0.552);
+  font-size: 24px;
+  padding: 7% 15%;
+  font-weight: 600;
+}
+
+.pPhotoStleSection span {
+  color: white;
 }
 
