@@ -11,6 +11,7 @@ import PhotographicStyle from '../components/PhotographicStyle/PhotographicStyle
 import Phone3 from '../components/Phone3/Phone3'
 import A18ProSection from '../components/A18ProSection/A18ProSection'
 import Qualityvideo from '../components/Cinemasterful/Qualityvideo'
+import Shape3D from '../components/shape3D/Shape3D'
 // import Significant from '../components/Significant/Significant'
 
 // import SSS from '../components/SSS'
@@ -30,6 +31,7 @@ export default function Home() {
       <WideCamera />
       <PhotographicStyle />
       <A18ProSection />
+      <Shape3D />
       {/* <Significant /> */}
       {/* <SSS /> */}
     </div>
