@@ -20,48 +20,47 @@ export default function PhotographicStyle() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%", // مساحة كافية للحركة بين الصور
+          end: "+=300%", // مدة السكشن (كل صورة تأخذ تقريبًا 100%)
           pin: true,
-          pinSpacing: true,
           scrub: 1,
           snap: {
-            snapTo: [0, 0.33, 0.66, 1], // كل صورة نقطة توقف
-            duration: 0.3,
+            snapTo: [0, 0.33, 0.66, 1],
+            duration: 0.4,
             ease: "power1.inOut",
           },
         },
       });
 
-      // الصورة الأولى
+      // الصورة 1
       tl.fromTo(
         imagesRef.current[0],
         { scale: 1 },
-        { scale: 1.2, duration: 1, ease: "power1.inOut" }
+        { scale: 1.15, duration: 1, ease: "power1.inOut" }
       );
 
-      // الصورة الثانية
+      // الصورة 2 + الخط
       tl.fromTo(
         imagesRef.current[1],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
-        { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
+        { clipPath: "inset(0 0% 0 0)", scale: 1.15, duration: 1, ease: "power1.inOut" },
         "+=0.3"
       ).fromTo(
         lineRef.current,
-        { x: "-100vw" },
-        { x: "100vw", duration: 1, ease: "none" },
+        { x: "-100%" },
+        { x: "100%", duration: 1, ease: "power1.inOut" },
         "<"
       );
 
-      // الصورة الثالثة
+      // الصورة 3 + الخط
       tl.fromTo(
         imagesRef.current[2],
         { clipPath: "inset(0 100% 0 0)", scale: 1 },
-        { clipPath: "inset(0 0% 0 0)", scale: 1.2, duration: 1, ease: "none" },
+        { clipPath: "inset(0 0% 0 0)", scale: 1.15, duration: 1, ease: "power1.inOut" },
         "+=0.3"
       ).fromTo(
         lineRef.current,
-        { x: "100vw" },
-        { x: "-100vw", duration: 1, ease: "none" },
+        { x: "100%" },
+        { x: "-100%", duration: 1, ease: "power1.inOut" },
         "<"
       );
     });
@@ -90,7 +89,6 @@ export default function PhotographicStyle() {
         </div>
       </section>
 
-      {/* مسافة بعد السيكشن لتجنب تغطية السكاشن التالية */}
       <div className="afterSectionSpacer" style={{ height: "0vh" }}></div>
 
       <p className="pPhotoStleSection">
