@@ -23,7 +23,7 @@ export default function Home() {
       <StrengthBeauty />
       <CameraControl />
       <Cinemasterful />
-      <QualityVideo />
+      <Qualityvideo />
       {/* <Phone3 /> */}
       <AudioMix />
       <WideCamera />
