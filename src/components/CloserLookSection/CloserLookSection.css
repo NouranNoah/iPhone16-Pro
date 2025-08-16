@@ -66,6 +66,7 @@
   width: fit-content;
   padding: 5px;
   border-radius: 10px;
+  text-align: center;
 }
 
 .allcolor p.animate-show {
@@ -125,5 +126,7 @@
   }
   .slideColor img {
     margin-top: 10px;
+    height: 35vh;
   }
+  
 }

@@ -1,0 +1,103 @@
+.upcontent {
+  background-color: #0d0d0d;
+  padding: 5% 10%;
+  color: rgba(255, 255, 255, 0.737);
+  margin: 5%;
+  border-radius: 20px;
+}
+
+.upgrade-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.upgrade-card p div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    gap: 5px;
+}
+
+.upgrade-header h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10%;
+}
+
+.upgrade-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+}
+
+.upgrade-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.upgrade-card {
+  background: #000000;
+  border-radius: 14px;
+  padding: 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.upgrade-card h3,
+.upgrade-card h4 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.upgrade-card span {
+  color: white;
+}
+
+.upgrade-card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.upgrade-section .p-in{
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+}
+.upgrade-card img {
+  max-width: 140px;
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .upgrade-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .upgrade-section {
+    grid-template-columns: 1fr;
+  }
+
+  .upgrade-header h1 {
+    font-size: 28px;
+  }
+  .upcontent {
+    margin: 50% 5%;
+    margin-bottom: 10%;
+  }
+  .upgrade-card{
+    height: 240px;
+  }
+}

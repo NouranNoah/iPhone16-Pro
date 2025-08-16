@@ -220,6 +220,7 @@
   .slide {
     min-width: 95%;
     height: 250px;
+    width: 90%;
   }
   .slides-wrapper p {
     font-size: 14px;

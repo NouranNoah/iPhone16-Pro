@@ -15,6 +15,8 @@ import Shape3D from '../components/shape3D/Shape3D'
 import Significant from '../components/Significant/Significant'
 
 import SSS from '../components/SSS'
+import UpgradeSection from '../components/UpgradeSection/UpgradeSection'
+import Footer from '../components/Footer/Footer'
 
 export default function Home() {
   return (
@@ -33,7 +35,9 @@ export default function Home() {
       <SSS />
       <A18ProSection />
       <Significant />
+      <UpgradeSection />
       <Shape3D />
+      <Footer/>
     </div>
   )
 }
