@@ -83,6 +83,7 @@
 @media (max-width: 768px) {
   .Beautyslids {
     padding: 0 5%;
+    height: 75vh;
   }
   .slidee2 {
     flex: 0 0 70%;
@@ -108,5 +109,8 @@
   }
   .slidee2 p {
     font-size: 0.7rem;
+  }
+  .camera-section {
+    height: 70vh;
   }
 }

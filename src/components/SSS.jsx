@@ -1,105 +1,144 @@
-// import React, { useRef, useLayoutEffect } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import smile from "../assets/camera_settings_endframe__dav5isd8emqa_xlarge.jpg"; // غيّري المسارات حسب صورك
-// import sad from "../assets/camera_settings_startframe__d46p9szb5o2u_xlarge.jpg";
-// import "../components/sss.css";
+import React, { useState, useEffect, useRef } from 'react'
+import img1 from "../assets/hero_style1__ejjuw3sw3t0m_medium.jpg";
+import img2 from "../assets/hero_style2__gbh1d5shzmie_medium.jpg";
+import img3 from "../assets/hero_style3__ebrovo7velkm_medium.jpg";
+import './sss.css'
 
+export default function SSS() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isInImageMode, setIsInImageMode] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sectionRef = useRef(null);
+  const images = [img1, img2, img3];
 
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndX = useRef(0);
+  const touchEndY = useRef(0);
 
-// export default function AppleStyleAuto() {
-//   const root = useRef(null);
-//   const sadRef = useRef(null);
+  useEffect(() => {
+    const section = sectionRef.current;
 
-//   useLayoutEffect(() => {
-//     const ctx = gsap.context(() => {
-//       gsap.set(sadRef.current, { opacity: 0 });
+    const handleWheel = (e) => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const scrollY = window.scrollY;
 
-//       gsap.to(sadRef.current, {
-//         opacity: 1,
-//         duration: 2,  // مدة التحويل
-//         delay: 1,     // يبدأ بعد ثانية
-//         ease: "power2.inOut"
-//       });
-//     }, root);
+      if (!isInImageMode && scrollY >= sectionTop && scrollY < sectionBottom && e.deltaY > 0) {
+        setIsInImageMode(true);
+        setCurrentImageIndex(0);
+        e.preventDefault();
+        window.scrollTo({ top: sectionTop, behavior: "instant" });
+        return;
+      }
 
-//     return () => ctx.revert();
-//   }, []);
+      if (isInImageMode) {
+        e.preventDefault();
+        if (isAnimating) return;
+        setIsAnimating(true);
 
-//   return (
-//     <section className="apple-wrap">
-//       <div className="apple-stage" ref={root}>
-//         <img src={smile} alt="smile" className="apple-img base" />
-//         <img ref={sadRef} src={sad} alt="sad" className="apple-img overlay" />
-//       </div>
-//     </section>
-//   );
-// }
-// ظظظظظظظظظظظظظظظظظظظظ
+        if (e.deltaY > 0) {
+          if (currentImageIndex < images.length - 1) {
+            setCurrentImageIndex(prev => prev + 1);
+          } else {
+            setIsInImageMode(false);
+          }
+        } else {
+          if (currentImageIndex > 0) {
+            setCurrentImageIndex(prev => prev - 1);
+          } else {
+            setIsInImageMode(false);
+            window.scrollTo({ top: sectionTop - 1, behavior: "instant" });
+          }
+        }
 
-// import React, { useRef, useEffect } from 'react';
-// import './A18ProSection.css';
-// import vidBG from '../../assets/medium (A18).mp4';
+        setTimeout(() => setIsAnimating(false), 1000);
+      }
+    };
 
-// export default function A18ProSection() {
-//   const videoRef = useRef(null);
-//   const sectionRef = useRef(null);
+    const handleTouchStart = (e) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
+    };
 
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (videoRef.current) {
-//           if (entry.isIntersecting) {
-//             // تشغيل الفيديو عند ظهور السيكشن
-//             videoRef.current.play().catch(err => {
-//               console.log('Autoplay blocked:', err);
-//             });
-//           } else {
-//             // إيقاف الفيديو عند الخروج من السيكشن
-//             videoRef.current.pause();
-//             videoRef.current.currentTime = 0;
-//           }
-//         }
-//       },
-//       { threshold: 0.3 } // 30% من السيكشن لازم يظهر
-//     );
+    const handleTouchMove = (e) => {
+      touchEndX.current = e.touches[0].clientX;
+      touchEndY.current = e.touches[0].clientY;
+    };
 
-//     if (sectionRef.current) observer.observe(sectionRef.current);
+    const handleTouchEnd = () => {
+      const deltaX = touchStartX.current - touchEndX.current;
+      const deltaY = touchStartY.current - touchEndY.current;
 
-//     return () => {
-//       if (sectionRef.current) observer.unobserve(sectionRef.current);
-//     };
-//   }, []);
+      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
 
-//   return (
-//     <div className='A18ProSection' ref={sectionRef}>
-//       <video
-//         ref={videoRef}
-//         src={vidBG}
-//         muted
-//         playsInline
-//         loop
-//         preload="auto"
-//         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-//       />
-//       <h1>
-//         <p>A18 Pro.</p>A colossally capable chip.
-//       </h1>
-//       <p>
-//         A phenomenally powerful chip that brings <span>exceptional speed and efficiency</span> to iPhone 16 Pro. 
-//         It also drives advanced video and photo features like Camera Control — and delivers outstanding graphics performance for AAA gaming.
-//       </p>
-//       <div className='specs'>
-//         <div>
-//           <p><span>New 16-core Neural Engine </span>makes on-device intelligence faster and more efficient</p>
-//           <p><span>New 6-core CPU</span>, the fastest in a smartphone, runs complex workloads with less power</p>
-//         </div>
-//         <div>
-//           <p><span>New 6-core GPU</span> gives you enhanced graphics performance</p>
-//           <p><span>17% increase in total system memory bandwidth</span>, the highest ever in iPhone, for outstanding performance</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const scrollY = window.scrollY;
 
+      if (!isInImageMode && scrollY >= sectionTop && scrollY < sectionBottom) {
+        setIsInImageMode(true);
+        setCurrentImageIndex(0);
+        window.scrollTo({ top: sectionTop, behavior: "instant" });
+        return;
+      }
+
+      if (isInImageMode && isHorizontal && !isAnimating) {
+        setIsAnimating(true);
+
+        if (deltaX > 50) {
+          // Swipe left → next
+          if (currentImageIndex < images.length - 1) {
+            setCurrentImageIndex(prev => prev + 1);
+          } else {
+            setIsInImageMode(false);
+          }
+        } else if (deltaX < -50) {
+          // Swipe right → prev
+          if (currentImageIndex > 0) {
+            setCurrentImageIndex(prev => prev - 1);
+          } else {
+            setIsInImageMode(false);
+            window.scrollTo({ top: sectionTop - 1, behavior: "instant" });
+          }
+        }
+
+        setTimeout(() => setIsAnimating(false), 1000);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    section.addEventListener('touchstart', handleTouchStart, { passive: true });
+    section.addEventListener('touchmove', handleTouchMove, { passive: true });
+    section.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      section.removeEventListener('touchstart', handleTouchStart);
+      section.removeEventListener('touchmove', handleTouchMove);
+      section.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [currentImageIndex, isInImageMode, isAnimating, images.length]);
+
+  return (
+    <div className='photographic-section'>
+        <h1>hoose your <p>Photographic Style.</p> Change it up. Change it back.</h1>
+      <div className="sss-container" ref={sectionRef}>
+        <div
+          className="images-wrapper"
+          style={{
+            transform: `translateX(-${currentImageIndex * 100}%)`
+          }}
+        >
+          {images.map((image, index) => (
+            <div key={index} className="image-container">
+              <img src={image} alt={`Image ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+        <p className='ppp'>Our latest generation of Photographic Styles gives you greater creative flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime.</p>
+    </div>
+  );
+}

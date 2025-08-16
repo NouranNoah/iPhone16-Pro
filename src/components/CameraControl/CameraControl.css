@@ -9,7 +9,6 @@
     color: #c9c0ba;
     font-size: 70px;
 }
-
 .secoundtitle {
   font-size: 70px;
   font-weight: bold;
@@ -205,9 +204,7 @@
   .bgSlideshow{
     height: 300px;
   }
-  .CameraControlContent .Beautyslids{
-    height: 50vh;
-  }
+
   .slidee2{
     flex: 0 0 80%;
   }

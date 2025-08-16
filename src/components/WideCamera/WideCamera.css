@@ -89,7 +89,7 @@
   align-items: center;
   background-color: black;
   padding: 50px 10%;
-  min-height: 100vh;
+  margin-bottom: 6%;
   color: rgba(255, 255, 255, 0.495);
   margin-top: -10%;
 }
@@ -218,6 +218,7 @@
     align-items:start;
     justify-content: left;
     margin-top: 10%;
+    margin-bottom: 0;
   }
 
   .text-side {
