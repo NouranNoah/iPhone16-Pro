@@ -17,85 +17,70 @@ export default function Cinemasterful() {
   const paraRef = useRef(null);
 
   useEffect(() => {
-  gsap.set(videoRef.current, { opacity: 1 });
-  gsap.set(phoneRef.current, { 
-    opacity: 0, 
-    scale: 1.2,
-    transformOrigin: "center center"
-  });
-  gsap.set(lineRef.current, { width: 0 });
-  gsap.set(paraRef.current, { opacity: 0, y: 50 });
-
-  let ctx = gsap.context(() => {
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=300%",
-        scrub: 1.5,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
-
-    // 1️⃣ الفيديو يختفي
-    tl.to(videoRef.current, {
+    gsap.set(videoRef.current, { opacity: 1 });
+    gsap.set(phoneRef.current, {
       opacity: 0,
-      duration: 1,
-      ease: "power2.inOut"
-    }, 0.3);
-
-    // 2️⃣ الصورة تظهر فول سكرين
-    tl.to(phoneRef.current, {
-      opacity: 1,
       scale: 1.2,
-      duration: 0.8,
-      ease: "power2.out"
-    }, 0.8);
+      transformOrigin: "center center"
+    });
+    gsap.set(lineRef.current, { width: 0 });
+    gsap.set(paraRef.current, { opacity: 0, y: 50 });
 
-    // 3️⃣ العنوان يختفي
-    tl.to(titleRef.current, {
-      y: -100,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.inOut"
-    }, 1.5);
+    let ctx = gsap.context(() => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=300%",
+          scrub: 1.5,
+          pin: true,
+          pinSpacing: true,
+        },
+      });
 
-    // 4️⃣ الصورة تصغر وتثبت في النص
-    tl.to(phoneRef.current, {
-      scale: 0.5,   
-      duration: 2,
-      ease: "power2.inOut"
-    }, 1.5);
+      tl.add("enter");
 
-    // 5️⃣ بعد ما تخلص الصورة التصغير → البادينج يبدأ
-    tl.to(sectionRef.current, {
-      padding: " 30%",   
-      duration: 1.5,
-      ease: "power2.inOut"
-    }, ">");   // 👈 ">" معناها يبدأ بعد اللي قبله ما يخلص
+      tl.to(videoRef.current, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut"
+      }, "enter");
 
-    // 6️⃣ الخط يتمدد
-    tl.to(lineRef.current, {
-      width: "100%",
-      duration: 1.2,
-      ease: "power2.inOut"
-    }, 4.5);
+      tl.to(titleRef.current, {
+        y: -100,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut"
+      }, "enter");
 
-    // 7️⃣ البرجراف يظهر
-    tl.to(paraRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: "power2.out"
-    }, 4.7);
-  }, sectionRef);
+      tl.to(phoneRef.current, {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "enter+=0.2");
 
-  return () => ctx.revert();
-}, []);
+      tl.to(phoneRef.current, {
+        scale: 0.65,
+        duration: 1.8,
+        ease: "none"
+      }, ">");
 
+      tl.to(lineRef.current, {
+        width: "100%",
+        duration: 0.8,
+        ease: "power2.out"
+      }, ">-0.1");
 
+      tl.to(paraRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, ">-0.1");
+    }, sectionRef);
 
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section ref={sectionRef} className="hero-section">
