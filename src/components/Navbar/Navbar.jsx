@@ -54,7 +54,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const hasMenu = (i) => navItems[i]?.subMenu?.length > 0;
-
+  if(mobileOpen) console.log('open');
   return (
     <div
       className="NavbarContent"
@@ -76,15 +76,15 @@ export default function Navbar() {
       </ul>
 
       {/* قائمة الموبايل */}
-      {mobileOpen && (
-        <div className="mobile-menu">
+      
+        <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
           <ul>
             {navItems.map((item, i) => (
               <li key={i}>{item.name}</li>
             ))}
           </ul>
         </div>
-      )}
+      
 
       {/* الميجا منيو */}
       <div

@@ -18,7 +18,7 @@
   list-style: none;
   gap: 3rem;
   font-weight: 100;
-  font-size: 17px;
+  font-size: 13px;
 }
 
 .nav-links li {
@@ -30,7 +30,7 @@
 .NavbarContent:has(.nav-links li:hover) {
   background-color: #171717;
 }
-.NavbarContent:has(.mega-menu.open) {
+.NavbarContent:has(.mega-menu.open) , .NavbarContent:has(.mobile-menu.open) {
   background-color: #171717;
 }
 .mega-menu {
@@ -115,7 +115,38 @@
   width: 100%;
   background: #171717;
   color: #fff;
+  flex-direction: column;
+  z-index: 9999;
+
+  /* ابدأ مقفول */
+  opacity: 0;
+  transform: translateY(-12px);
+  max-height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    max-height 0.4s ease,
+    visibility 0s linear 0.35s; /* يخلي الاختفاء يتم بعد الانيميشن */
 }
+
+.mobile-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 700px;
+  pointer-events: auto;
+  visibility: visible;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    max-height 0.4s ease,
+    visibility 0s; /* تظهر فورًا */
+}
+
+
 
 .mobile-menu ul {
   list-style: none;

@@ -56,7 +56,7 @@ export default function HighlightsSection() {
     if (isPlaying && isSectionVisible) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % sections.length);
-      }, 3000);
+      }, 5000);
     } else {
       clearInterval(intervalRef.current);
     }
@@ -75,7 +75,7 @@ export default function HighlightsSection() {
       <div className="slides-container">
         <div
           className="slides-wrapper"
-          style={{ transform: `translateX(${-currentIndex * 90}%)` }}
+          style={{ transform: `translateX(${-currentIndex * 95}%)` }}
         >
           {sections.map((section, i) => (
             <div

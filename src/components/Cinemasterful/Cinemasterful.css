@@ -1,122 +1,71 @@
-.cinemaWrapper {
-  height: 130vh;
-  background-color: black;
-  padding: 0;
-  padding-bottom: 30px;
-  text-align: center;
-}
-.cinemaSection {
-  position: sticky;
-  top: 0;
-  left: 0%;
-  height: 100vh;
+.hero-section {
+  position: relative;
+  z-index: 0;
   width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-}
-
-
-.cinemaSection {
-  position: sticky;
-  top: 0;
   height: 100vh;
   overflow: hidden;
+  background: #000;
 }
 
-.vidCinema {
+.hero-section video {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: opacity 0.8s ease;
+  object-fit: cover;   /* الفيديو يملأ الشاشة */
+  z-index: 0;
 }
 
-.imgCinema {
+.hero-section .phone-img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: center;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  max-width: 90vw;
-  max-height: 90vh;
+  transform: translate(-50%, -50%); /* عشان تفضل في النص */
+  width: 100%;   /* تبدأ ملي الشاشة */
+  height: auto;  /* خلي الطول يتناسب */
+  opacity: 0;
+  z-index: 1;
 }
 
-.cinemaWrapper h1{
+.hero-title {
+  position: absolute;
+  z-index: 2;        
+  top: 30%; 
+  left: 10%;
+  right: 0;
+  text-align: center;
   font-size: 70px;
-  position: relative;
-  z-index: 222;
   color: white;
+  pointer-events: none;
   width: 80%;
 }
-.cinemaSection p{
-  color: rgba(255, 255, 255, 0.46);
-  font-size: 14px;
-}
-/* /////////////////////////////////////////////////// */
 
-.qualityVideo{
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 15%;
-  padding-bottom: 10px;
-  background-color: black;
-  margin-top: -10%;
+.animated-line {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 4px;
+  width: 0;
+  background-color: white;
+  border-radius: 2px;
+  z-index: 3;
 }
-.qualityVideo .textVideo{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+
+section {
+  position: relative;
+  z-index: 0;
 }
-.textVideo p{
-  flex: 1;
-  font-size: 20px;
-}
-.textVideo h2{
-  padding: 0 5%;
-  flex: 1;
-  font-size: 40px;
-  margin-bottom: 15%;
-}
-.qualityVideo .textVideo span, .qualityVideo h2{
+
+.hero-para {
+  position: relative;
+  margin-top: 90%;
+  font-size: 1.2rem;
   color: white;
-}
-.qualityVideo .textVideo p{
-  color: rgba(255, 255, 255, 0.451);
-}
-
-@media (max-width: 768px) {
-  .cinemaSection{
-    height: 80vh;
-  }
-  .cinemaSection h1{
-    font-size: 50px;
-  }
-  .qualityVideo .textVideo {
-    flex-direction: column;
-  }
-  .textVideo h2 {
-    font-size: 28px;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .textVideo p{
-    font-size: 20px;
-  }
-  .cinemaWrapper{
-    height: 80vh;
-  }
-  .qualityVideo {
-    gap: 60px;
-    flex-direction: column;
-    padding-bottom: 25%;
-  }
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
