@@ -17,6 +17,7 @@ import Significant from '../components/Significant/Significant'
 import SSS from '../components/SSS'
 import UpgradeSection from '../components/UpgradeSection/UpgradeSection'
 import Footer from '../components/Footer/Footer'
+import Space from '../components/space/Space'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <CloserLookSection />
       <StrengthBeauty />
       <CameraControl />
+      <Space />
       <Cinemasterful />
       <Qualityvideo />
       {/* <Phone3 /> */}

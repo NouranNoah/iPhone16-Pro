@@ -1,4 +1,60 @@
-import React, { useEffect, useRef } from "react";
+// import React, { useEffect, useRef } from "react";
+// import "./Cinemasterful.css";
+// import videoFile from "../../assets/medium.mp4";
+// import mobileImg from "../../assets/Group 1.png";
+
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// export default function Cinemasterful() {
+//   const sectionRef = useRef(null);
+//   const videoRef = useRef(null);
+//   const phoneRef = useRef(null);
+
+//   useEffect(() => {
+//     let ctx = gsap.context(() => {
+//       gsap.to(videoRef.current, {
+//         opacity: 0,
+//         scrollTrigger: {
+//           trigger: sectionRef.current,
+//           start: "top top",
+//           end: "bottom top",
+//           scrub: true,
+//           pin: true,
+//         },
+//       });
+
+//       gsap.fromTo(
+//         phoneRef.current,
+//         { opacity: 0, scale: 1.5 },
+//         {
+//           opacity: 1,
+//           scale: 0.5,
+//           scrollTrigger: {
+//             trigger: sectionRef.current,
+//             start: "center center",
+//             end: "bottom top",
+//             scrub: true,
+//             pin:true
+//           },
+//         }
+//       );
+//     }, sectionRef);
+
+//     return () => ctx.revert();
+//   }, []);
+
+//   return (
+//     <section ref={sectionRef} className="hero-section">
+//       <video ref={videoRef} src={videoFile} autoPlay muted loop />
+//       <img ref={phoneRef} src={mobileImg} alt="iPhone" className="phone-img" />
+//     </section>
+//   );
+// }
+
+import React, { useRef, useEffect } from "react";
 import "./Cinemasterful.css";
 import videoFile from "../../assets/medium.mp4";
 import mobileImg from "../../assets/Group 1.png";
@@ -13,121 +69,67 @@ export default function Cinemasterful() {
   const videoRef = useRef(null);
   const phoneRef = useRef(null);
   const titleRef = useRef(null);
-  const lineRef = useRef(null);
-  const paraRef = useRef(null);
+  const textRef = useRef(null);
 
   useEffect(() => {
-  gsap.set(videoRef.current, { opacity: 1 });
-  gsap.set(phoneRef.current, { 
-    opacity: 0, 
-    scale: 1.2,
-    transformOrigin: "center center"
-  });
-  gsap.set(lineRef.current, { width: 0 });
-  gsap.set(paraRef.current, { opacity: 0, y: 50 });
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          pin: true,
+        },
+      });
 
-  let ctx = gsap.context(() => {
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=300%",
-        scrub: 1.5,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
+      // الفيديو والعنوان يختفوا
+      tl.to(videoRef.current, { opacity: 0 }, 0);
+      tl.to(titleRef.current, { y: -100, opacity: 0 }, 0);
 
-    // 1️⃣ الفيديو يختفي
-    tl.to(videoRef.current, {
-      opacity: 0,
-      duration: 1,
-      ease: "power2.inOut"
-    }, 0.3);
+      // الصورة تظهر وتعمل Zoom In
+      tl.fromTo(
+        phoneRef.current,
+        { opacity: 0, scale: 1.5 },
+        { opacity: 1, scale: 1, duration: 1 },
+        0
+      );
 
-    // 2️⃣ الصورة تظهر فول سكرين
-    tl.to(phoneRef.current, {
-      opacity: 1,
-      scale: 1.2,
-      duration: 0.8,
-      ease: "power2.out"
-    }, 0.8);
+      // الصورة تعمل Zoom Out تدريجي
+      tl.to(phoneRef.current, { scale: 0.7, duration: 1 }, 0.5);
 
-    // 3️⃣ العنوان يختفي
-    tl.to(titleRef.current, {
-      y: -100,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.inOut"
-    }, 1.5);
+      // النص يظهر بعد تثبيت الصورة
+      tl.fromTo(
+        textRef.current,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 1 },
+        1.2
+      );
+    }, sectionRef);
 
-    // 4️⃣ الصورة تصغر وتثبت في النص
-    tl.to(phoneRef.current, {
-      scale: 0.5,   
-      duration: 2,
-      ease: "power2.inOut"
-    }, 1.5);
-
-    // 5️⃣ بعد ما تخلص الصورة التصغير → البادينج يبدأ
-    tl.to(sectionRef.current, {
-      padding: " 30%",   
-      duration: 1.5,
-      ease: "power2.inOut"
-    }, ">");   // 👈 ">" معناها يبدأ بعد اللي قبله ما يخلص
-
-    // 6️⃣ الخط يتمدد
-    tl.to(lineRef.current, {
-      width: "100%",
-      duration: 1.2,
-      ease: "power2.inOut"
-    }, 4.5);
-
-    // 7️⃣ البرجراف يظهر
-    tl.to(paraRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: "power2.out"
-    }, 4.7);
-  }, sectionRef);
-
-  return () => ctx.revert();
-}, []);
-
-
-
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section ref={sectionRef} className="hero-section">
-      <h1 ref={titleRef} className="hero-title">
-        4K 120 fps Dolby Vision. Cinemasterful.
-      </h1>
-
+      <h1 ref={titleRef}>4K 120 fps Dolby Vision. Cinemasterful.</h1>
       <video
         ref={videoRef}
+        className="vidCinema"
         src={videoFile}
         autoPlay
         muted
         loop
         playsInline
       />
-
       <img
         ref={phoneRef}
+        className="phone-img"
         src={mobileImg}
         alt="iPhone"
-        className="phone-img"
       />
-
-      {/* الخط */}
-      <div ref={lineRef} className="animated-line"></div>
-
-      {/* البرجراف */}
-      <p ref={paraRef} className="hero-para">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Amet dolore pariatur similique alias laudantium fuga quod quia ratione.
-        Non praesentium, rerum debitis quo cumque facere minus!
-        Eos esse accusamus minima!
+      <p ref={textRef}>
+        Cinematic experience redefined with immersive details.
       </p>
     </section>
   );
