@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
-import "./Cinemasterful.css";
-import videoFile from "../../assets/medium.mp4";
-import mobileImg from "../../assets/Group 1.png";
+import React, { useRef, useEffect, useState } from "react";
+import imgFile from "../../assets/hero_camera__d95g9w2nnyye_large.jpg";
+import mobileImg from "../../assets/Group 2.png";
+import imgFileRes from '../../assets/Group 3.png'
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,10 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Cinemasterful() {
   const sectionRef = useRef(null);
-  const videoRef = useRef(null);
+  const imgRef = useRef(null);
   const phoneRef = useRef(null);
   const titleRef = useRef(null);
-  const textRef = useRef(null);
+  
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 734);
+
+  useEffect(() => {
+    // listener لتغيير الصورة عند تغيير حجم الشاشة
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 734);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -28,7 +38,7 @@ export default function Cinemasterful() {
       });
 
       // الفيديو والعنوان يختفوا
-      tl.to(videoRef.current, { opacity: 0 }, 0);
+      tl.to(imgRef.current, { opacity: 0 }, 0);
       tl.to(titleRef.current, { y: -100, opacity: 0 }, 0);
 
       // الصورة تظهر وتعمل Zoom In
@@ -40,15 +50,8 @@ export default function Cinemasterful() {
       );
 
       // الصورة تعمل Zoom Out تدريجي
-      tl.to(phoneRef.current, { scale: 0.7, duration: 1 }, 0.5);
+      tl.to(phoneRef.current, { scale: 0.9, duration: 1 }, 0.5);
 
-      // النص يظهر بعد تثبيت الصورة
-      tl.fromTo(
-        textRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1 },
-        1.2
-      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -56,25 +59,22 @@ export default function Cinemasterful() {
 
   return (
     <section ref={sectionRef} className="hero-section">
-      <h1 ref={titleRef}>4K 120 fps Dolby Vision. Cinemasterful.</h1>
-      <video
-        ref={videoRef}
+      <h1 ref={titleRef}>
+        <h1>New 48MP</h1>
+        Ultra Wide camera. Viva la resolution..
+      </h1>
+      <img
+        ref={imgRef}
         className="vidCinema"
-        src={videoFile}
-        autoPlay
-        muted
-        loop
-        playsInline
+        src={imgFile}
+        alt="iPhone"
       />
       <img
         ref={phoneRef}
-        className="phone-img"
-        src={mobileImg}
+        className="phone-img2"
+        src={isSmallScreen ? imgFileRes : mobileImg}
         alt="iPhone"
       />
-      <p ref={textRef}>
-        Cinematic experience redefined with immersive details.
-      </p>
     </section>
   );
 }

@@ -7,6 +7,7 @@
     text-align: center;
     padding: 10px 15%;
     padding-top: 15%;
+    margin-bottom: 15%;
 }
 .AudioMixSection img{
     width: 100%;
@@ -78,7 +79,8 @@
 
   .AudioMixSection .audioCards div {
     width: 100%;
-    text-align: center;
+    text-align: left;
+    padding: 10px 10%;
   }
 
   .AudioMixSection .audioCards div p {

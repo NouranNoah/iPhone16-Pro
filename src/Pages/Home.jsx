@@ -18,6 +18,8 @@ import SSS from '../components/SSS'
 import UpgradeSection from '../components/UpgradeSection/UpgradeSection'
 import Footer from '../components/Footer/Footer'
 import Space from '../components/space/Space'
+import Cinemasterful2 from '../components/Cinemasterful2/Cinemasterful2'
+import TextCin from '../components/Cinemasterful2/textCin'
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
       <Qualityvideo />
       {/* <Phone3 /> */}
       <AudioMix />
+      <Cinemasterful2 />
+      <TextCin />
       <WideCamera />
       {/* <PhotographicStyle /> */}
       <SSS />
