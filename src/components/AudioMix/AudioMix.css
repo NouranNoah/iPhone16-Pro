@@ -41,7 +41,7 @@
     margin:10px 0 ;
 }
 
-/* Responsive AudioMixSection */
+
 @media (max-width: 1024px) {
   .AudioMixSection {
     padding: 10px 10%;
