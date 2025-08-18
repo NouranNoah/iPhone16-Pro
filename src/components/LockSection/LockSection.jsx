@@ -130,14 +130,6 @@ import img3 from "../../assets/tone3.jpg";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LockSection() {
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 734);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 734);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const sectionRef = useRef(null);
 
@@ -168,7 +160,8 @@ export default function LockSection() {
       const images = gsap.utils.toArray(".img-slide");
 
       // الحالات الابتدائية
-      gsap.set(texts, { y: 0, autoAlpha: 1 });
+      gsap.set(texts, { y: 0, autoAlpha: 0 });
+      gsap.set(texts[0], { autoAlpha: 1 });
       gsap.set(images, { autoAlpha: 0 });
       gsap.set(images[0], { autoAlpha: 1 });
 
@@ -178,7 +171,7 @@ export default function LockSection() {
           start: "top top",
           end: () => "+=" + (slides.length - 1) * window.innerHeight * 1.2,
           pin: true,
-          pinSpacing: false,
+          pinSpacing: true,
           scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -211,8 +204,13 @@ export default function LockSection() {
 
   return (
     <>
-      <div className="styleHei" />
       <div className="LockSection" ref={sectionRef}>
+        <div className="imgLock">
+          {slides.map((s, i) => (
+            <img key={i} src={s.img} className="img-slide" alt="" />
+          ))}
+        </div>
+
         <div className="textLock">
           {slides.map((s, i) => (
             <div key={i} className="text-slide">
@@ -221,20 +219,7 @@ export default function LockSection() {
             </div>
           ))}
         </div>
-
-        <div className="imgLock">
-          {slides.map((s, i) => (
-            <img key={i} src={s.img} className="img-slide" alt="" />
-          ))}
-        </div>
       </div>
-      <div
-        style={{
-          height: isSmallScreen
-            ? `${(slides.length - 1) * 100}vh`
-            : `${(slides.length - 1) * 0}vh`,
-        }}
-      />
     </>
   );
 }
