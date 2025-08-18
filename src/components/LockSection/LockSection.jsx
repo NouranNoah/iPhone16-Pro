@@ -154,45 +154,43 @@ export default function LockSection() {
   ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const texts = gsap.utils.toArray(".text-slide");
-      const images = gsap.utils.toArray(".img-slide");
+  const ctx = gsap.context(() => {
+    const texts = gsap.utils.toArray(".text-slide");
+    const images = gsap.utils.toArray(".img-slide");
 
-      // حالات أولية
-      gsap.set(texts, { y: 0, autoAlpha: 0 });
-      gsap.set(texts[0], { autoAlpha: 1 });
-      gsap.set(images, { autoAlpha: 0 });
-      gsap.set(images[0], { autoAlpha: 1 });
+    gsap.set(texts, { autoAlpha: 0 });
+    gsap.set(images, { autoAlpha: 0 });
+    gsap.set(texts[0], { autoAlpha: 1 });
+    gsap.set(images[0], { autoAlpha: 1 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => "+=" + (slides.length - 1) * window.innerHeight * 0.9,
-          pin: true,
-          pinSpacing: false, // عشان ما يسيبش فراغ
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=" + (slides.length * window.innerHeight),
+        scrub: true,
+        pin: true,
+        pinSpacing: true, // 👈 لازم يتساب
+      },
+    });
 
-      for (let i = 0; i < slides.length - 1; i++) {
-        tl.addLabel(`step${i}`)
-          .to(texts[i], { y: -50, autoAlpha: 0, ease: "power3.inOut" }, `step${i}`)
-          .fromTo(
-            texts[i + 1],
-            { y: 50, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, ease: "power3.inOut" },
-            `step${i}`
-          )
-          .to(images[i], { autoAlpha: 0, ease: "power2.inOut" }, `step${i}`)
-          .to(images[i + 1], { autoAlpha: 1, ease: "power2.inOut" }, `step${i}`);
+    slides.forEach((_, i) => {
+      if (i < slides.length - 1) {
+        tl.to(texts[i], { autoAlpha: 0, y: -50 })
+          .to(images[i], { autoAlpha: 0 }, "<")
+          .to(texts[i + 1], { autoAlpha: 1, y: 0 })
+          .to(images[i + 1], { autoAlpha: 1 }, "<");
       }
-    }, sectionRef);
+    });
 
-    return () => ctx.revert();
-  }, [slides.length]);
+    // Fade out في الآخر عشان ما يغطيش اللي بعده
+    tl.to(texts[slides.length - 1], { autoAlpha: 0, y: -50 })
+      .to(images[slides.length - 1], { autoAlpha: 0 }, "<");
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, [slides]);
+
 
   return (
     <div className="LockSection" ref={sectionRef}>
