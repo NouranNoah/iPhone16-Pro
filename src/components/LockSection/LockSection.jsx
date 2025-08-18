@@ -118,7 +118,7 @@
 //     </>
 //   );
 // }
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./LockSection.css";
@@ -130,15 +130,6 @@ import img3 from "../../assets/tone3.jpg";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LockSection() {
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 734);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 734);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const sectionRef = useRef(null);
 
   const slides = [
@@ -167,8 +158,9 @@ export default function LockSection() {
       const texts = gsap.utils.toArray(".text-slide");
       const images = gsap.utils.toArray(".img-slide");
 
-      // الحالات الابتدائية
-      gsap.set(texts, { y: 0, autoAlpha: 1 });
+      // حالات أولية
+      gsap.set(texts, { y: 0, autoAlpha: 0 });
+      gsap.set(texts[0], { autoAlpha: 1 });
       gsap.set(images, { autoAlpha: 0 });
       gsap.set(images[0], { autoAlpha: 1 });
 
@@ -176,9 +168,9 @@ export default function LockSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => "+=" + (slides.length - 1) * window.innerHeight * 1.2,
+          end: () => "+=" + (slides.length - 1) * window.innerHeight * 0.9,
           pin: true,
-          pinSpacing: false,
+          pinSpacing: false, // عشان ما يسيبش فراغ
           scrub: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -186,7 +178,6 @@ export default function LockSection() {
       });
 
       for (let i = 0; i < slides.length - 1; i++) {
-        const isLast = i + 1 === slides.length - 1;
         tl.addLabel(`step${i}`)
           .to(texts[i], { y: -50, autoAlpha: 0, ease: "power3.inOut" }, `step${i}`)
           .fromTo(
@@ -196,13 +187,7 @@ export default function LockSection() {
             `step${i}`
           )
           .to(images[i], { autoAlpha: 0, ease: "power2.inOut" }, `step${i}`)
-          .to(images[i + 1], { autoAlpha: 1, ease: "power2.inOut" }, `step${i}`)
-          .call(() => {
-            if (isLast) {
-              // ثبت آخر نص وصورة بعد ظهورهم
-              gsap.set([texts[i + 1], images[i + 1]], { autoAlpha: 1 });
-            }
-          });
+          .to(images[i + 1], { autoAlpha: 1, ease: "power2.inOut" }, `step${i}`);
       }
     }, sectionRef);
 
@@ -210,31 +195,21 @@ export default function LockSection() {
   }, [slides.length]);
 
   return (
-    <>
-      <div className="styleHei" />
-      <div className="LockSection" ref={sectionRef}>
-        <div className="textLock">
-          {slides.map((s, i) => (
-            <div key={i} className="text-slide">
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="imgLock">
-          {slides.map((s, i) => (
-            <img key={i} src={s.img} className="img-slide" alt="" />
-          ))}
-        </div>
+    <div className="LockSection" ref={sectionRef}>
+      <div className="imgLock">
+        {slides.map((s, i) => (
+          <img key={i} src={s.img} className="img-slide" alt="" />
+        ))}
       </div>
-      <div
-        style={{
-          height: isSmallScreen
-            ? `${(slides.length - 1) * 100}vh`
-            : `${(slides.length - 1) * 0}vh`,
-        }}
-      />
-    </>
+
+      <div className="textLock">
+        {slides.map((s, i) => (
+          <div key={i} className="text-slide">
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

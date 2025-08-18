@@ -44,7 +44,7 @@ export default function Home() {
       <LockSection />
       <A18ProSection />
       <Significant />
-      <UpgradeSection />
+      {/* <UpgradeSection /> */}
       <StellarSection />
       <SectioniOS18 />
       <Shape3D />
