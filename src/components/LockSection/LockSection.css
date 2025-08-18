@@ -1,0 +1,89 @@
+.LockSection {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  padding: 0 15%;
+  width: 100%;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.textLock,
+.imgLock {
+  position: relative;
+}
+
+.textLock {
+  width: 43%;
+  min-height: 350px;
+}
+.textLock h3 {
+  font-size: 35px;
+  margin-bottom: 5%;
+}
+.textLock p {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.581);
+}
+
+.imgLock {
+  width: 35%;
+  height: 100%;
+  min-height: 500px;
+}
+
+
+.text-slide,
+.img-slide {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;       
+  transform: translateY(50px);
+}
+
+.text-slide:first-child,
+.img-slide:first-child {
+  opacity: 1;      
+  transform: translateY(0);
+}
+
+
+
+.imgLock img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+.styleHei{
+    height: 190vh;
+}
+
+@media (max-width: 480px) {
+    .imgLock {
+        width: 80%;
+    }
+    .textLock {
+        width: 90%;
+        margin-top: 10%;
+    }
+.LockSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 0;
+}
+.styleHei{
+    height: 10px;
+}
+} 
+
+

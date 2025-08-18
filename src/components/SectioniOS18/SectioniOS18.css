@@ -1,0 +1,145 @@
+.SectioniOS18 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 15% 0;
+  padding-top: 0;
+}
+
+.SectioniOS18 .imgBGios {
+  width: 100%;
+}
+
+.SectioniOS18 .titleios {
+  color: rgb(255, 244, 226);
+  font-size: 70px;
+  font-weight: 600;
+}
+
+.SectioniOS18 .secoundtitle {
+  text-align: center;
+}
+
+.SectioniOS18 .headerios {
+  width: 60%;
+  text-align: center;
+  line-height: 1;
+  padding: 10px;
+  margin-bottom: 3%;
+}
+
+.SectioniOS18 .Beautyslids {
+  background-color: transparent;
+}
+
+.SectioniOS18 .allsB {
+  padding-bottom: 10%;
+  background: linear-gradient(
+    180deg,
+    rgb(0, 0, 0),
+    rgb(0, 0, 0) 20%,
+    rgb(19, 19, 19) 80%
+  );
+}
+
+.SectioniOS18 .Beautyslids .slidee2 {
+  background-color: transparent;
+  box-shadow: none;
+  align-items: flex-start;
+  flex: 0 0 50%;  /* الافتراضي */
+  height: 90%;
+}
+
+.SectioniOS18 .Beautyslids .slidee2 p {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.564);
+  padding: 2%;
+  width: 80%;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.allsB a {
+  color: #0281f0;
+  text-decoration-line: none;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.SectioniOS18 .slideArrows {
+  position: absolute;
+  bottom: 20%;
+  right: 9%;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* 🖥️ تابلت كبير */
+@media (max-width: 1024px) {
+  .SectioniOS18 .titleios {
+    font-size: 55px;
+  }
+  .SectioniOS18 .headerios {
+    width: 70%;
+  }
+  .SectioniOS18 .Beautyslids .slidee2 {
+    flex: 0 0 60%;
+    height: 80%;
+  }
+}
+
+/* 📱 موبايل متوسط */
+@media (max-width: 768px) {
+  .SectioniOS18 {
+    gap: 30px;
+    padding: 10% 0;
+  }
+  .SectioniOS18 .titleios , .SectioniOS18 .secoundtitle{
+    font-size: 60px;
+    text-align: center;
+  }
+  .SectioniOS18 .headerios {
+    width: 90%;
+    font-size: 16px;
+  }
+  .SectioniOS18 .Beautyslids .slidee2 {
+    flex: 0 0 75%;
+    height: 65%;
+  }
+  .SectioniOS18 .Beautyslids .slidee2 p {
+    font-size: 15px;
+    width: 90%;
+  }
+}
+
+/* 📱 موبايل صغير */
+@media (max-width: 480px) {
+  .SectioniOS18 .titleios  {
+    font-size: 46px;
+    color: rgba(255, 245, 223, 0.721);
+  }
+  .SectioniOS18 .headerios {
+    width: 95%;
+    font-size: 14px;
+  }
+  .SectioniOS18 .Beautyslids .slidee2 {
+    flex: 0 0 90%;
+    height: 55%;
+  }
+  .SectioniOS18 .Beautyslids .slidee2 p {
+    font-size: 13px;
+    padding: 5%;
+  }
+  .SectioniOS18 .slideArrows {
+    bottom: 15%;
+    right: 5%;
+  }
+  .SectioniOS18 .allsB {
+    height: 70vh;
+  }
+}

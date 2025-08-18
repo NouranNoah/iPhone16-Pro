@@ -1,0 +1,298 @@
+.StellarSection{
+    color: white;
+    padding:25% 15%;
+}
+.textStellar{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    gap: 30%;
+}
+.textStellar div{
+    display: flex;
+    flex-direction: column;
+    align-items:left;
+    justify-content: space-between;
+    gap: 15px;
+}
+.textStellar .textStell1{
+    flex: 2;
+}
+.textStellar .textStell2{
+    flex: 1;
+}
+.textStellar .textStell2 p{
+    margin-bottom: 30%;
+}
+.textStellar p{
+    color: rgba(255, 255, 255, 0.571);
+    font-weight: 600;
+    font-size: 22px;
+}
+.StellarSection h1{
+    font-size: 70px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 5%;
+}
+.secoundtitle {
+    width: 100%;
+  font-size: 70px;
+  font-weight: bold;
+  color: #fffaf6; 
+  text-shadow:
+     0 0 5px #d2b48c,
+     0 0 10px #d2b48c,
+     0 0 20px #d2b48c,
+     0 0 30px #d2b48c,
+     0 0 40px #d2b48c;
+  animation: glow 4s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  0% {
+    text-shadow:
+      0 0 1px #d6ab71,
+      0 0 2px #d6ab71,
+      0 0 4px #d6ab71,
+      0 0 6px #d6ab71,
+      0 0 8px #d6ab71;
+  }
+  100% {
+    text-shadow:
+      0 0 5px #d6ab71,
+      0 0 10px #d6ab71,
+      0 0 20px #d6ab71,
+      0 0 30px #d6ab71,
+      0 0 40px #d6ab71;
+  }
+}
+.textStellar .h3t{
+    color: white;
+    font-size: 39px;
+    font-weight: 600;
+}
+
+.StellarSection span{
+    color: white;
+}
+.vidStellar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 70%;
+    height: 60vh;
+}
+.vidStellar video{
+    padding: 0 15px;
+}
+.vidStellarSmal{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 70%;
+    height: 60vh;
+    display: none;
+}
+.vidStellar video, .vidStellar img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 20%;
+    bottom: 0%;
+    object-fit: contain;
+}
+.compareContainer {
+  background-image: linear-gradient(180deg, #0e0e0e 30%, rgba(14, 14, 14, 0) 80%);
+  color: white;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.compareHeader {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.compareHeader p{
+    font-size: 30px;
+}
+
+.compareHeader select {
+  background-color: #111;
+  color: white;
+  border: 1px solid #0076DF;
+  padding: 5px 15px;
+  border-radius: 35px;
+  cursor: pointer;
+  width: 35%;
+  font-size: 20px;
+}
+.compareHeader select option {
+  background-color: white;
+  color: black;
+}
+/* 
+ */
+ .customDropdown {
+  position: relative;
+  width: 250px; /* 👈 هنا تتحكمي في العرض */
+}
+
+.customDropdown .selected {
+  background: black;
+  color: white;
+  border: 1px solid #0076DF;
+  padding: 5px 15px;
+  border-radius: 35px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 23px;
+}
+
+.customDropdown .options {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+.customDropdown .options li {
+  padding: 10px 15px;
+  color: black;
+  cursor: pointer;
+}
+
+.customDropdown .options li:hover {
+  background: #eee;
+}
+
+.arrow {
+  font-size: 12px;
+}
+.compareText{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    gap: 35%;
+}
+
+
+.compareText h3 {
+  font-size: 30px;
+  margin: 2% 0%;
+  color: white;
+}
+
+.compareText p {
+  font-size: 20px;
+  margin: 5px 0 0 0;
+  color: #ccccccb3;
+}
+
+
+
+@media (max-width: 768px) {
+    .StellarSection h1, .StellarSection .secoundtitle{
+        font-size: 60px;
+    }
+    .textStellar p{
+        font-size: 20px;
+    }
+    .textStellar{
+        flex-direction: column;
+    }
+    .textStell2 {
+        width: 60%;
+    }
+    .textStellar .textStell2 p{
+        margin: 5% 0;
+    }
+    .vidStellarSmal video ,.vidStellarSmal img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0%;
+        bottom: 0%;
+        object-fit: contain;
+    } 
+    .vidStellarSmal video {
+        padding: 0 10px;
+    }
+    .vidStellarSmal{
+        display: flex;
+        width: 100%;
+        height: 30vh;
+    }
+    .vidStellar{
+        display: none;
+    }
+    .StellarSection {
+        color: white;
+        padding: 25% 10%;
+    }
+}
+@media (max-width: 468px) {
+    .textStellar .textStell2 p {
+    margin: 5% 0;
+    }
+    .textStell2 {
+        width: 60%;
+    }
+    .textStell2{
+        margin-top: 10%;
+    }
+    .StellarSection h1, .StellarSection .secoundtitle{
+        font-size: 50px;
+    }
+    .vidStellarSmal video {
+        padding: 0 5px;
+    }
+    .compareHeader {
+        flex-direction: column;
+        align-items: start;
+    }
+    .compareHeader select {
+        width: 100%;
+        font-size: 25px;
+        margin-bottom: 40px;
+    }
+    .compareText {
+        flex-direction: column;
+    }
+    .compareCard{
+        margin-bottom: 10%;
+        font-size: 28px;
+    }
+    .StellarSection {
+        padding: 25% 6%;
+    }
+    .compareContainer {
+        margin-top:25% ;
+    }
+    .listt{
+        width: 40%;
+        background-color: white;
+    }
+    .compareHeader select option {
+        width: 30%;
+        font-size: 20px;
+    }
+}

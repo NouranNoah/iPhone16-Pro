@@ -20,6 +20,9 @@ import Footer from '../components/Footer/Footer'
 import Space from '../components/space/Space'
 import Cinemasterful2 from '../components/Cinemasterful2/Cinemasterful2'
 import TextCine from '../components/Cinemasterful2/TextCine'
+import StellarSection from '../components/StellarSEction/StellarSection'
+import SectioniOS18 from '../components/SectioniOS18/SectioniOS18'
+import LockSection from '../components/LockSection/LockSection'
 
 export default function Home() {
   return (
@@ -29,21 +32,24 @@ export default function Home() {
       <CloserLookSection />
       <StrengthBeauty />
       <CameraControl />
-      <Space />
-      <Cinemasterful />
+      {/* <Space /> */}
+      {/* <Cinemasterful /> */}
       <Qualityvideo />
       {/* <Phone3 /> */}
       <AudioMix />
-      <Cinemasterful2 />
+      {/* <Cinemasterful2 /> */}
       <TextCine />
       <WideCamera />
-      {/* <PhotographicStyle /> */}
-      <SSS />
+      {/* <SSS /> */}
+      <LockSection />
       <A18ProSection />
       <Significant />
       <UpgradeSection />
+      <StellarSection />
+      <SectioniOS18 />
       <Shape3D />
       <Footer/>
+      {/* <PhotographicStyle /> */}
     </div>
   )
 }
