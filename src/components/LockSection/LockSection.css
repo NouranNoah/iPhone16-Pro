@@ -63,15 +63,15 @@
 }
 .styleHei{
     height: 300vh;
-    margin-bottom: 100vh;
+    margin-bottom: 110vh;
 }
 .heiunder{
-    margin-bottom: 100vh;
+    margin-bottom: 10vh;
 }
 
 @media (max-width: 480px) {
     .imgLock {
-        width: 80%;
+        width: 60%;
     }
     .textLock {
         width: 90%;
@@ -87,10 +87,10 @@
 }
 .styleHei{
     height: 10px;
-    margin-bottom: 10vh;
+    margin-bottom: 100vh;
 }
 .heiunder{
-    height: 200vh;
+    height: 100vh;
 }
 } 
 
