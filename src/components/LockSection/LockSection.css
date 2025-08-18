@@ -62,7 +62,8 @@
   border-radius: 12px;
 }
 .styleHei{
-    height: 200vh;
+    height: 300vh;
+    margin-bottom: 30vh;
 }
 
 @media (max-width: 480px) {
