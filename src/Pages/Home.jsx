@@ -41,6 +41,7 @@ export default function Home() {
       <TextCine />
       <WideCamera />
       <SSS />
+      <SSS />
       <LockSection />
       <A18ProSection />
       <Significant />
