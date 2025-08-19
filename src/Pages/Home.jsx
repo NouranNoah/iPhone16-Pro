@@ -41,8 +41,8 @@ export default function Home() {
       <TextCine />
       <WideCamera />
       <SSS />
-      <SSS />
       <LockSection />
+      <SSS />
       <A18ProSection />
       <Significant />
       {/* <UpgradeSection /> */}
