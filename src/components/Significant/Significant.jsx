@@ -1,23 +1,58 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './Significant.css';
-import imgCard from '../../assets/gaming__efzeg2xv1ka6_xlarge.jpg';
+import React, { useState } from 'react'
+import './Significant.css'
+import img1 from '../../assets/mac__bu11q61rsagi_medium.jpg'
+import img2 from '../../assets/watch__ig3zeahrudyu_medium.jpg'
+import img3 from '../../assets/airpods__edpf1pmlr70i_medium.jpg'
 
+export default function GamingSection() {
+  // 0 = اول كارد مفتوح بشكل افتراضي
+  const [activeIndex, setActiveIndex] = useState(0);
 
-export default function Significant() {
-  
+  const sections = [
+    {
+      title: "iPhone and Mac",
+      text: "With iPhone Mirroring, you can view your iPhone screen on your Mac and control it without picking up your phone. Continuity features also let you answer calls or messages right from your Mac. You can even copy images, video, or text from your iPhone and paste it all into a different app on your Mac. And with iCloud, you can access your files from either device.",
+      image: img1
+    },
+    {
+      title: "iPhone and Apple Watch",
+      text: "Misplaced your iPhone? The latest Apple Watch models can show you its approximate distance and direction. To set up a group photo on your iPhone, join the group and use Apple Watch as a viewfinder to snap the shot. And when you take a call on your Apple Watch, just tap your iPhone to continue the conversation there.",
+      image: img2
+    },
+    {
+      title: "iPhone and AirPods",
+      text: "Set up AirPods on iPhone with just a tap. You’ll love Adaptive Audio, which automatically tailors the noise control to provide the best listening experience across different environments and interactions throughout the day.",
+      image: img3
+    }
+  ];
+
   return (
-    <div className='SignificantContent'>
-      <p className='pSign'>DEATH STRANDING DIRECTOR’S CUT</p>
-      <img src={imgCard} alt="img" />
+    <div className='signContent'>
+      <h1>Significant others.</h1>
+      <div className='SignSection'>
+        
+        <div className='textCardsSign'>
+          {sections.map((section, index) => (
+            <div className='cardSign' key={index}>
+              <h2 onClick={() => setActiveIndex(index)}>
+                {section.title}
+              </h2>
+              {activeIndex === index && (
+                <p>{section.text}</p>
+              )}
+            </div>
+          ))}
+        </div>
 
-      <h1 className='firstTitle'><p>Gaming.</p>In a whole new light.</h1>
-      <div>
-        <p>With up to two times faster hardware-accelerated ray tracing, A18 Pro <span>makes games look and feel beautifully lifelike</span> — with more fluid graphics and realistic lighting.</p>
-        <p>And with Game Mode in iOS 18, you’ll get better sustained frame rates for continuous play and improved responsiveness if you’re using wireless controllers and AirPods.</p>
+        <div className='ImgCardsSign'>
+          <img 
+            src={sections[activeIndex].image} 
+            alt="img" 
+            className='show' 
+          />
+        </div>
+
       </div>
-      <h2><span>Up to 2x faster hardware-accelerated ray tracing</span> than A17 Pro</h2>
-
-     
     </div>
-  );
+  )
 }

@@ -23,6 +23,7 @@ import TextCine from '../components/Cinemasterful2/TextCine'
 import StellarSection from '../components/StellarSEction/StellarSection'
 import SectioniOS18 from '../components/SectioniOS18/SectioniOS18'
 import LockSection from '../components/LockSection/LockSection'
+import GamingSection from '../components/GamingSection/GamingSection'
 
 export default function Home() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 734)
@@ -54,7 +55,8 @@ export default function Home() {
       <LockSection />
       {isLargeScreen && <SSS />}
       <A18ProSection />
-      <Significant />
+      <GamingSection />
+      {/* <Significant /> */}
       {/* <UpgradeSection /> */}
       <StellarSection />
       <SectioniOS18 />

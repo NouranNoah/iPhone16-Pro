@@ -1,0 +1,122 @@
+.GamingSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: white;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.GamingSection img {
+    width: 100%;
+    height: auto;
+}
+
+.GamingSection h1 {
+    font-size: 70px;
+    padding: 0 15%;
+    margin-top: -15%;
+}
+
+.GamingSection div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5%;
+}
+
+.GamingSection div p {
+    width: 25%;
+    padding: 10px;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.594);
+}
+
+.GamingSection span {
+    color: white;
+}
+
+.GamingSection h2 {
+    width: 35%;
+    font-size: 35px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.594);
+    padding: 5% 0;
+}
+
+.GamingSection .pSign {
+    color: rgba(255, 255, 255, 0.594);
+    font-size: 14px;
+    margin-top: 10%;
+    margin-bottom: -1%;
+}
+
+/* 📱 للشاشات الصغيرة */
+@media (max-width: 1024px) {
+    .GamingSection h1 {
+        font-size: 50px;
+        padding: 0 10%;
+        margin-top: -5%;
+    }
+
+    .GamingSection div p {
+        width: 40%;
+        font-size: 18px;
+    }
+
+    .GamingSection h2 {
+        width: 60%;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .GamingSection {
+        padding: 0 3%;
+        gap: 15px;
+    }
+
+    .GamingSection h1 {
+        font-size: 36px;
+        padding: 0 5%;
+        margin-top: 0;
+    }
+
+    .GamingSection div {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .GamingSection div p {
+        width: 100%;
+        font-size: 16px;
+        padding: 5px 0;
+    }
+
+    .GamingSection h2 {
+        width: 90%;
+        font-size: 22px;
+        padding: 20px 0;
+    }
+
+    .GamingSection .pSign {
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .GamingSection h1 {
+        font-size: 28px;
+    }
+
+    .GamingSection div p {
+        font-size: 14px;
+    }
+
+    .GamingSection h2 {
+        font-size: 18px;
+    }
+}
