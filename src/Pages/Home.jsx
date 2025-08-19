@@ -32,15 +32,15 @@ export default function Home() {
       <CloserLookSection />
       <StrengthBeauty />
       <CameraControl />
-      {/* <Space /> */}
+      <Space />
       {/* <Cinemasterful /> */}
       <Qualityvideo />
       {/* <Phone3 /> */}
       <AudioMix />
-      {/* <Cinemasterful2 /> */}
+      <Cinemasterful2 />
       <TextCine />
       <WideCamera />
-      {/* <SSS /> */}
+      <SSS />
       <LockSection />
       <A18ProSection />
       <Significant />

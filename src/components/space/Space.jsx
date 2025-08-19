@@ -1,61 +1,89 @@
-import React, { useEffect, useRef } from "react";
-import "./Space.css";
+import React, { useRef, useEffect, useState } from "react";
+import "./space.css";
 import videoFile from "../../assets/medium.mp4";
 import mobileImg from "../../assets/Group 1.png";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Cinemasterful() {
   const sectionRef = useRef(null);
-  const videoRef = useRef(null);
-  const phoneRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+  const [showParagraph, setShowParagraph] = useState(false);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          pin: true,
-          // markers: true,
-        },
-      });
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-      // 1️⃣ الفيديو يختفي فجأة
-      tl.to(videoRef.current, { opacity: 0, duration: 0.2 }, 0);
-
-      // 2️⃣ الصورة تظهر بعد ما الفيديو يختفي
-      tl.fromTo(
-        phoneRef.current,
-        { opacity: 0, scale: 1 },
-        { opacity: 1, scale: 1, duration: 0.3 },
-        0.2
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const scrolled = Math.min(
+        Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0),
+        1
       );
+      setProgress(scrolled);
+    };
 
-      // 3️⃣ الصورة تتقلص وتثبت في النص
-      tl.to(phoneRef.current, {
-        scale: 0.85,
-        ease: "none",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const videoOpacity = progress < 0.5 ? 1 : 0;
+  const imageOpacity = progress < 0.5 ? 0 : 1;
+
+  // ✨ تعديل imageScale لتثبيت الحجم بعد ظهور الصورة
+  const finalScale = 0.9;
+  const imageScale = imageOpacity < 1 ? Math.max(0.5, 2 - progress * 1.7) : finalScale;
+
+  const imageWidth = 600;
+  const imageHeight = imageWidth * 0.5;
+
+  // إظهار البراجراف بعد ثانية من ظهور الصورة
+  useEffect(() => {
+    if (imageOpacity === 1) {
+      const timer = setTimeout(() => setShowParagraph(true), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowParagraph(false);
+    }
+  }, [imageOpacity]);
+
   return (
-    <section ref={sectionRef} className="hero-section">
-      <video ref={videoRef} src={videoFile} autoPlay muted loop />
-      <img
-        ref={phoneRef}
-        src={mobileImg}
-        alt="iPhone"
-        className="phone-img"
-      />
-    </section>
+    <div className="cinemaWrapper">
+      <h1
+        style={{
+          transform: `translateY(-${progress * 100}px)`,
+          opacity: 1 - progress * 2,
+          transition: "transform 0.1s linear, opacity 0.1s linear",
+        }}
+      >
+        4K 120 fps Dolby Vision.Cinemasterful.
+      </h1>
+
+      <section ref={sectionRef} className="cinemaSection">
+        <div className="videoOverlay"></div>
+        <video
+          className="vidCinema"
+          style={{ opacity: videoOpacity }}
+          src={videoFile}
+          autoPlay
+          muted
+          loop
+        />
+        <img
+          className="imgCinema"
+          style={{
+            opacity: imageOpacity,
+            transform: `translate(-50%, -50%) scale(${imageScale})`,
+            width: `${imageWidth}px`,
+            height: `${imageHeight}px`
+          }}
+          src={mobileImg}
+          alt="Mobile"
+        />
+
+        <p className={`cinemaText ${showParagraph ? "show" : ""}`}>
+          A herd of Icelandic horses, captured in stunning 4K 120 fps Dolby Vision
+        </p>
+      </section>
+    </div>
   );
 }

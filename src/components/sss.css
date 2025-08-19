@@ -4,8 +4,11 @@
   overflow: hidden;
   background: #000;
   -webkit-overflow-scrolling: touch;
+  
 }
-
+.photographic-section {
+  margin-bottom: 200vh;
+}
 .images-wrapper {
   display: flex;
   transition: transform 1s ease-in-out;
@@ -131,5 +134,8 @@
   }
   .sss-container{
     height: auto;
+  }
+  .photographic-section {
+    margin-bottom: 20vh;
   }
 }

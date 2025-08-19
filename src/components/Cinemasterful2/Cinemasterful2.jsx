@@ -1,19 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import imgFile from "../../assets/hero_camera__d95g9w2nnyye_large.jpg";
+import img1File from "../../assets/hero_camera__d95g9w2nnyye_large.jpg";
 import mobileImg from "../../assets/Group 2.png";
 import imgFileRes from '../../assets/Group 3.png'
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Cinemasterful() {
   const sectionRef = useRef(null);
-  const imgRef = useRef(null);
-  const phoneRef = useRef(null);
-  const titleRef = useRef(null);
-  
+  const [progress, setProgress] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 734);
 
   useEffect(() => {
@@ -24,57 +16,79 @@ export default function Cinemasterful() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          pin: true,
-        },
-      });
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-      // الفيديو والعنوان يختفوا
-      tl.to(imgRef.current, { opacity: 0 }, 0);
-      tl.to(titleRef.current, { y: -100, opacity: 0 }, 0);
-
-      // الصورة تظهر وتعمل Zoom In
-      tl.fromTo(
-        phoneRef.current,
-        { opacity: 0, scale: 1.5 },
-        { opacity: 1, scale: 1, duration: 1 },
-        0
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const scrolled = Math.min(
+        Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0),
+        1
       );
+      setProgress(scrolled);
+    };
 
-      // الصورة تعمل Zoom Out تدريجي
-      tl.to(phoneRef.current, { scale: 0.9, duration: 1 }, 0.5);
-
-    }, sectionRef);
-
-    return () => ctx.revert();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const videoOpacity = progress < 0.5 ? 1 : 0;
+  const imageOpacity = progress < 0.5 ? 0 : 1;
+
+ 
+  const finalScale = 0.7;
+  const imageScale = imageOpacity < 1 ? Math.max(0.5, 2 - progress * 1.7) : finalScale;
+
+  const imageWidth = 900;
+  const imageHeight = imageWidth * 0.5;
+
+  
+  
+
   return (
-    <section ref={sectionRef} className="hero-section">
-      <h1 ref={titleRef}>
-        <h1>New 48MP</h1>
-        Ultra Wide camera. Viva la resolution..
+    <div className="cinemaWrapper">
+      <h1
+        style={{
+          transform: `translateY(-${progress * 100}px)`,
+          opacity: 1 - progress * 2,
+          transition: "transform 0.1s linear, opacity 0.1s linear",
+        }}
+      >
+       New 48MP Ultra Wide camera.Viva la resolution.
       </h1>
-      <img
-        ref={imgRef}
-        className="vidCinema"
-        src={imgFile}
-        alt="iPhone"
-      />
-      <img
-        ref={phoneRef}
-        className="phone-img2"
-        src={isSmallScreen ? imgFileRes : mobileImg}
-        alt="iPhone"
-      />
-    </section>
+
+      <section
+  ref={sectionRef}
+  className="cinemaSection"
+  style={{
+    height: `${progress < 0.5 ? 100 : 30 + (1 - progress) * 50}vh`,
+    transition: "height 0.5s ease"
+  }}
+>
+  <div className="videoOverlay"></div>
+  <img
+    className="vidCinema"
+    style={{ opacity: videoOpacity }}
+    src={img1File}
+    autoPlay
+    muted
+    loop
+  />
+  <img
+    className="imgCinema"
+    style={{
+      opacity: imageOpacity,
+      transform: `translate(-50%, -50%) scale(${imageScale})`,
+      width: `${imageWidth}px`,
+      height: `${imageHeight}px`
+    }}
+    src={isSmallScreen ? imgFileRes : mobileImg}
+    alt="Mobile"
+  />
+</section>
+
+    </div>
   );
 }
