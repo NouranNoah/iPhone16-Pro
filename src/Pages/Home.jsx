@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeroSection from '../components/HeroSection/HeroSection'
 import HighlightsSection from '../components/HighlightsSection/HighlightsSection'
 import CloserLookSection from '../components/CloserLookSection/CloserLookSection'
