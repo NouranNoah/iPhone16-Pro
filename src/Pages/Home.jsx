@@ -25,6 +25,16 @@ import SectioniOS18 from '../components/SectioniOS18/SectioniOS18'
 import LockSection from '../components/LockSection/LockSection'
 
 export default function Home() {
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 734)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 734)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div>
       <HeroSection />
@@ -42,7 +52,7 @@ export default function Home() {
       <WideCamera />
       <SSS />
       <LockSection />
-      <SSS />
+      {isLargeScreen && <SSS />}
       <A18ProSection />
       <Significant />
       {/* <UpgradeSection /> */}
