@@ -53,7 +53,7 @@ export default function Home() {
       <WideCamera />
       <SSS />
       <LockSection />
-      {isLargeScreen && <SSS />}
+      
       <A18ProSection />
       <GamingSection />
       {/* <Significant /> */}

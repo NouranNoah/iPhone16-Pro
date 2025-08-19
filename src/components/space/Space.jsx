@@ -166,7 +166,7 @@ export default function VideoSection() {
   // الصورة
   // الصورة: تظهر تدريجي مع زووم أوت أقوى
 const imageOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 1]);
-const imageScale = useTransform(scrollYProgress, [0.1, 1], [2, 0.8]); 
+const imageScale = useTransform(scrollYProgress, [0.5, 1], [2, 0.5]); 
 
 
   // البرجراف (يظهر بعد الصورة مباشرة ويطلع لفوق شوية)
