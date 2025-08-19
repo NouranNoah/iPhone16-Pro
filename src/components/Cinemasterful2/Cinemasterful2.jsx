@@ -63,7 +63,7 @@ export default function Cinemasterful() {
   ref={sectionRef}
   className="cinemaSection"
   style={{
-    height: `${progress < 0.5 ? 100 : 30 + (1 - progress) * 50}vh`,
+    height: `${progress < 0.5 ? 100 : 50 + (1 - progress) * 50}vh`,
     transition: "height 0.5s ease"
   }}
 >

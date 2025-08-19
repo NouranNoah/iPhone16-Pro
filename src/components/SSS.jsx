@@ -33,27 +33,31 @@ export default function SSS() {
       }
 
       if (isInImageMode) {
-        e.preventDefault();
-        if (isAnimating) return;
-        setIsAnimating(true);
+  if (isAnimating) return;
+  setIsAnimating(true);
 
-        if (e.deltaY > 0) {
-          if (currentImageIndex < images.length - 1) {
-            setCurrentImageIndex(prev => prev + 1);
-          } else {
-            setIsInImageMode(false);
-          }
-        } else {
-          if (currentImageIndex > 0) {
-            setCurrentImageIndex(prev => prev - 1);
-          } else {
-            setIsInImageMode(false);
-            window.scrollTo({ top: sectionTop - 1, behavior: "instant" });
-          }
-        }
+  if (e.deltaY > 0) {
+    // لو مش آخر صورة
+    if (currentImageIndex < images.length - 1) {
+      setCurrentImageIndex(prev => prev + 1);
+      e.preventDefault(); // امنع scroll بس أثناء تغيير الصور
+    } else {
+      // آخر صورة → خلي scroll ينزل طبيعي
+      setIsInImageMode(false);
+    }
+  } else {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(prev => prev - 1);
+      e.preventDefault();
+    } else {
+      // أول صورة → خلي scroll يصعد طبيعي
+      setIsInImageMode(false);
+    }
+  }
 
-        setTimeout(() => setIsAnimating(false), 1000);
-      }
+  setTimeout(() => setIsAnimating(false), 500);
+}
+
     };
 
     const handleTouchStart = (e) => {
