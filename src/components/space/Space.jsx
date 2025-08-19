@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import "./space.css";
+import "./Space.css";
 import videoFile from "../../assets/medium.mp4";
 import mobileImg from "../../assets/Group 1.png";
 
