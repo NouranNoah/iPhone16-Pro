@@ -1,91 +1,82 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import "./LockSection.css";
 
 import img1 from "../../assets/tone__cjmevyop7r7m_medium.jpg";
 import img2 from "../../assets/tone2.jpg";
 import img3 from "../../assets/tone3.jpg";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function LockSection() {
   const sectionRef = useRef(null);
 
-  const slides = [
-    {
-      img: img1,
-      title: "Lock in your look.",
-      text:
-        "We’ve created new styles that let you dial in your exact desired look with more advanced skin-tone rendering and set it across your photos.",
-    },
-    {
-      img: img2,
-      title: "Align with your aesthetic.",
-      text:
-        "Our improved image pipeline also enables more creative styles, which allow you to customize the different moods of a photo through color.",
-    },
-    {
-      img: img3,
-      title: "Make the most of your megapixels.",
-      text:
-        "Personalize every style even more with the new control pad, which makes it easy to adjust tone and color simultaneously. You can also use the slider to adjust the intensity of the specific colors, instead of applying a one-size-fits-all approach.",
-    },
-  ];
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-  useEffect(() => {
-  const ctx = gsap.context(() => {
-    const texts = gsap.utils.toArray(".text-slide");
-    const images = gsap.utils.toArray(".img-slide");
+  
+  const img1Op = useTransform(scrollYProgress, [0, 0.33], [1, 0]);
+  const img2Op = useTransform(scrollYProgress, [0.33, 0.66], [0, 1]);
+  const img3Op = useTransform(scrollYProgress, [0.66, 1], [0, 1]);
 
-    gsap.set(texts, { autoAlpha: 0 });
-    gsap.set(images, { autoAlpha: 0 });
-    gsap.set(texts[0], { autoAlpha: 1 });
-    gsap.set(images[0], { autoAlpha: 1 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=" + (slides.length * window.innerHeight),
-        scrub: true,
-        pin: true,
-        pinSpacing: true, // 👈 لازم يتساب
-      },
-    });
-
-    slides.forEach((_, i) => {
-      if (i < slides.length - 1) {
-        tl.to(texts[i], { autoAlpha: 0, y: -100 })
-          .to(images[i], { autoAlpha: 0 }, "<")
-          .to(texts[i + 1], { autoAlpha: 1, y: 0 })
-          .to(images[i + 1], { autoAlpha: 1 }, "<");
-      }
-    });
-
-    // Fade out في الآخر عشان ما يغطيش اللي بعده
-    tl.to(texts[slides.length - 1], { autoAlpha: 0, y: -50 })
-      .to(images[slides.length - 1], { autoAlpha: 0 }, "<");
-  }, sectionRef);
-
-  return () => ctx.revert();
-}, [slides]);
+  const text1Y = useTransform(scrollYProgress, [0, 0.33], [0, -600]);
+  const text2Y = useTransform(scrollYProgress, [0.33,0.44, 0.66], [620,0, -600]);
+  const text3Y = useTransform(scrollYProgress, [0.66, 1], [620, 0]);
 
 
   return (
     <div className="LockSection" ref={sectionRef}>
-      <div className="textLock">
-        {slides.map((s, i) => (
-          <div key={i} className="text-slide">
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
+      <div className="stickyWrapperr">
+        {/* النصوص */}
+        <div className="textLock">
+          
+          <div className="hidediv">
+            <motion.div style={{ y: text1Y,  }}
+             transition={{ duration: 0.9, ease: "easeInOut" }}
+            className="divText">
+            <h1>Lock in your look.</h1>
+            <p>We’ve created new styles that let you dial in your exact desired look with more advanced skin-tone rendering and set it across your photos.</p>
+          </motion.div>
+          <motion.div style={{ y: text2Y,  }}
+            transition={{ duration: 0.9, ease: "easeInOut" }}
+           className="divText">
+            <h1>Align with your aesthetic.</h1>
+            <p>Our improved image pipeline also enables more creative styles, which allow you to customize the different moods of a photo through color.</p>
+          </motion.div>
+
+          <motion.div style={{ y: text3Y, }} 
+           transition={{ duration: 0.9, ease: "easeInOut" }}
+          className="divText tt">
+            <h1>Make the most of your megapixels.</h1>
+            <p>Personalize every style even more with the new control pad, which makes it easy to adjust tone and color simultaneously. You can also use the slider to adjust the intensity of the specific colors, instead of applying a one-size-fits-all approach.</p>
+          </motion.div>
           </div>
-        ))}
-      </div>
-      <div className="imgLock">
-        {slides.map((s, i) => (
-          <img key={i} src={s.img} className="img-slide" alt="" />
-        ))}
+          
+        </div>
+
+        {/* الصور */}
+        <div className="imgLock">
+          <motion.img
+            style={{ opacity: img1Op }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            src={img1}
+            className="img-slide"
+          />
+          <motion.img
+            style={{ opacity: img2Op }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            src={img2}
+            className="img-slide"
+          />
+          <motion.img
+            style={{ opacity: img3Op }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            src={img3}
+            className="img-slide"
+          />
+        </div>
       </div>
 
     </div>

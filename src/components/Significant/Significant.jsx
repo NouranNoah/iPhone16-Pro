@@ -5,7 +5,6 @@ import img2 from '../../assets/watch__ig3zeahrudyu_medium.jpg'
 import img3 from '../../assets/airpods__edpf1pmlr70i_medium.jpg'
 
 export default function GamingSection() {
-  // 0 = اول كارد مفتوح بشكل افتراضي
   const [activeIndex, setActiveIndex] = useState(0);
 
   const sections = [
@@ -16,7 +15,7 @@ export default function GamingSection() {
     },
     {
       title: "iPhone and Apple Watch",
-      text: "Misplaced your iPhone? The latest Apple Watch models can show you its approximate distance and direction. To set up a group photo on your iPhone, join the group and use Apple Watch as a viewfinder to snap the shot. And when you take a call on your Apple Watch, just tap your iPhone to continue the conversation there.",
+      text: "Misplaced your iPhone? The latest Apple Watch models can show you its approximate distance and direction.14 To set up a group photo on your iPhone, join the group and use Apple Watch as a viewfinder to snap the shot. And when you take a call on your Apple Watch, just tap your iPhone to continue the conversation there.",
       image: img2
     },
     {
@@ -30,26 +29,39 @@ export default function GamingSection() {
     <div className='signContent'>
       <h1>Significant others.</h1>
       <div className='SignSection'>
-        
+
+        {/* Text side */}
         <div className='textCardsSign'>
           {sections.map((section, index) => (
-            <div className='cardSign' key={index}>
-              <h2 onClick={() => setActiveIndex(index)}>
+            <div className={`cardSign ${activeIndex === index ? "active" : ""}`} key={index} >
+              <div className='titicon' onClick={() => setActiveIndex(index)}>
+                <h2>
                 {section.title}
               </h2>
-              {activeIndex === index && (
-                <p>{section.text}</p>
-              )}
+                {
+                  activeIndex === index ?
+                <i class="fa-solid fa-chevron-down"></i>  
+                  :
+                <i class="fa-solid fa-chevron-up"></i>
+                }
+              </div>
+              
+                <p className={activeIndex === index ? "show" : "hide"}>{section.text}</p>
+              
             </div>
           ))}
         </div>
 
+        {/* Image side */}
         <div className='ImgCardsSign'>
-          <img 
-            src={sections[activeIndex].image} 
-            alt="img" 
-            className='show' 
-          />
+          {sections.map((section, index) => (
+            <img
+              key={index}
+              src={section.image}
+              alt="img"
+              className={activeIndex === index ? "show" : "hide"}
+            />
+          ))}
         </div>
 
       </div>

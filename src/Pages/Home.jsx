@@ -51,18 +51,17 @@ export default function Home() {
       <Cinemasterful2 />
       <TextCine />
       <WideCamera />
-      <SSS />
+      {/* <SSS /> */}
+      <PhotographicStyle />
       <LockSection />
-      
       <A18ProSection />
       <GamingSection />
-      {/* <Significant /> */}
+      <Significant />
       {/* <UpgradeSection /> */}
       <StellarSection />
       <SectioniOS18 />
       <Shape3D />
       <Footer/>
-      {/* <PhotographicStyle /> */}
     </div>
   )
 }

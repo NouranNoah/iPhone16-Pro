@@ -239,8 +239,8 @@
 
 .videoParagraph {
   position: absolute;
-  bottom: 2%;
-  left: 25%;
+  bottom: 5%;
+  left: 32%;
   transform: translateX(-50%);
   color: rgba(255, 255, 255, 0.75);
   font-size: 20px;

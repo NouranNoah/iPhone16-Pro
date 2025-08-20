@@ -170,8 +170,8 @@ const imageScale = useTransform(scrollYProgress, [0.5, 1], [2, 0.5]);
 
 
   // البرجراف (يظهر بعد الصورة مباشرة ويطلع لفوق شوية)
-  const paragraphOpacity = useTransform(scrollYProgress, [0.6, 1], [0, 1]);
-  const paragraphY = useTransform(scrollYProgress, [0.6, 1], [50, 0]);
+  const paragraphOpacity = useTransform(scrollYProgress, [0.9, 1], [0, 1]);
+  const paragraphY = useTransform(scrollYProgress, [0.9, 1], [50, 0]);
 
   return (
     <section ref={sectionRef} className="videoSection">

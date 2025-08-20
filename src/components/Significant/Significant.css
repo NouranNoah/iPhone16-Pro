@@ -1,121 +1,147 @@
 .signContent {
-  background-color: rgb(47, 47, 47);
-  padding: 8% 6%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 10% 6%;
+  background-color: rgb(36, 36, 36);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* الكونتينر الرئيسي */
+.signContent h1 {
+  font-size: 55px;
+  margin-bottom: 60px;
+}
+
+/* layout الأساسي */
 .SignSection {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10%;
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  padding: 6%;
+  gap: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: stretch;
   background-color: #000;
-  border-radius: 24px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  overflow: hidden;
+  border-radius: 35px;
+  height: 100vh;
 }
 
-/* الصور */
-.SignSection .ImgCardsSign {
-  position: relative;
-  height: 80vh;
+.textCardsSign {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.SignSection img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 90%;
-  max-width: 500px;
-  object-fit: contain;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.SignSection .show {
-  opacity: 1;
-  transform: translateY(0);
+  padding: 5% 8%;
 }
 
-/* النصوص */
-.SignSection .textCardsSign {
+.titicon {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 30px;
-  flex: 1;
-  color: #fff;
-}
-
-.textCardsSign .cardSign {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 20px;
-  border-left: 3px solid transparent;
-  transition: border 0.3s ease, background 0.3s ease;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   cursor: pointer;
 }
 
+.cardSign {
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.cardSign i {
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.211);
+}
+
+/* الكارت التاني بس */
+.cardSign:nth-child(2) {
+  border-top: 1px solid rgba(255, 255, 255, 0.211);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.211);
+  padding: 10% 0;
+}
 
 .cardSign h2 {
-  font-weight: 700;
-  font-size: 1.6rem;
-}
-.cardSign p {
-  font-weight: 400;
-  font-size: 1rem;
-  opacity: 0.8;
-  line-height: 1.5;
-  transition: opacity 0.3s ease;
-}
-.cardSign:hover p {
-  opacity: 1;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-/* ريسبونسيف */
+.cardSign p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  margin-top: 0;
+  max-height: 0;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: max-height 0.6s ease, transform 0.6s ease;
+}
+
+.cardSign p.show {
+  max-height: 500px;
+  transform: translateY(0);
+}
+
+.cardSign p.hide {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* الصور */
+.ImgCardsSign {
+  flex: 3;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.ImgCardsSign img {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* خليها تملى الكونتينر */
+  object-fit: contain; /* يظبط الأبعاد */
+  border-radius: 25px;
+  opacity: 0;
+  padding: 5% 0;
+  transition: opacity 0.5s ease, transform 0.8s ease;
+}
+
+.ImgCardsSign img.show {
+  opacity: 1;
+  z-index: 2;
+}
+
+.ImgCardsSign img.hide {
+  opacity: 0;
+  transform: scale(1.02);
+  z-index: 1;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .SignSection {
     flex-direction: column;
-    gap: 40px;
-    padding: 10% 6%;
-    text-align: center;
-  }
-  .SignSection .ImgCardsSign {
     height: auto;
-    order: -1;
   }
-  .SignSection img {
-    position: static;
+
+  .ImgCardsSign {
+    flex: none;
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    transform: translateY(0);
+    height: 300px; /* ارتفاع ثابت للموبايل */
   }
-  .SignSection .textCardsSign {
-    align-items: center;
+
+  .textCardsSign {
+    padding: 5% 4%;
   }
-  .textCardsSign .cardSign {
-    align-items: center;
-    border-left: none;
-    border-bottom: 2px solid transparent;
+
+  .signContent h1 {
+    font-size: 36px;
   }
-  
-}
-@media (max-width: 600px) {
-  .cardSign h2 { font-size: 1.3rem; }
-  .cardSign p { font-size: 0.9rem; }
+
+  .cardSign h2 {
+    font-size: 24px;
+  }
+
+  .cardSign p {
+    font-size: 16px;
+  }
 }

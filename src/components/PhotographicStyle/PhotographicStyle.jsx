@@ -1,116 +1,55 @@
-// import React, { useEffect, useRef } from "react";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import "./PhotographicStyle.css";
-
-// import img1 from "../../assets/hero_style1__ejjuw3sw3t0m_medium.jpg";
-// import img2 from "../../assets/hero_style2__gbh1d5shzmie_medium.jpg";
-// import img3 from "../../assets/hero_style3__ebrovo7velkm_medium.jpg";
-
-// gsap.registerPlugin(ScrollTrigger);
-
-// export default function PhotographicStyle() {
-//   const sectionRef = useRef(null);
-//   const imagesRef = useRef([]);
-
-//   useEffect(() => {
-//     const ctx = gsap.context(() => {
-//       const images = imagesRef.current;
-
-//       images.forEach((img, index) => {
-//         const tl = gsap.timeline({
-//           scrollTrigger: {
-//             trigger: img,
-//             start: "top center",
-//             end: "bottom center",
-//             scrub: true,
-//           },
-//         });
-
-//         // Zoom In لكل صورة
-//         tl.fromTo(
-//           img,
-//           { scale: 1 },
-//           { scale: 1.2, duration: 1, ease: "power1.inOut" }
-//         );
-
-//         // لو الصورة الأخيرة → نعمل Zoom Out في النهاية
-//         if (index === images.length - 1) {
-//           tl.to(img, { scale: 1, duration: 1, ease: "power1.inOut" });
-//         }
-//       });
-//     });
-
-//     return () => ctx.revert();
-//   }, []);
-
-//   return (
-//     <div className="contentPhoto">
-//       <h1>Choose your <p>Photographic Style.</p> Change it up. Change it back.</h1>
-//       <section className="photographic-section" ref={sectionRef}>
-//       {[img1, img2, img3].map((src, i) => (
-//         <div className="image-container" key={i}>
-//           <img
-//             src={src}
-//             alt={`photo-${i}`}
-//             className="photo"
-//             ref={(el) => (imagesRef.current[i] = el)}
-//           />
-//         </div>
-//       ))}
-//     </section>
-//     <p className="pPhotoStleSection">Our latest generation of Photographic Styles gives you greater creative flexibility than ever before, so you can <span>make every photo even more you.</span> And thanks to advances in our image pipeline, you can now reverse any style, anytime. </p>
-//     </div>
-//   );
-// }
-
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import "./PhotographicStyle.css";
-
 import img1 from "../../assets/hero_style1__ejjuw3sw3t0m_medium.jpg";
 import img2 from "../../assets/hero_style2__gbh1d5shzmie_medium.jpg";
 import img3 from "../../assets/hero_style3__ebrovo7velkm_medium.jpg";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function PhotographicStyle() {
+export default function ImageReveal() {
   const sectionRef = useRef(null);
-  const imagesRef = useRef([]);
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 1,
-        start: "top top",
-        end: "+=" + imagesRef.current.length * window.innerWidth,
-      },
-    });
-
-    imagesRef.current.forEach((img, i) => {
-      // أول صورة تبدأ من 0، الباقي يبدأوا من بره يمين
-      tl.fromTo(
-        img,
-        { x: i === 0 ? "0%" : "100%" },
-        { x: "0%", duration: 1 }
-      ).to(img, { x: "-100%", duration: 1 });
-    });
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // clip-path لكل صورة
+  const img2Clip = useTransform(scrollYProgress, [0.33, 0.66], ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]);
+  const img3Clip = useTransform(scrollYProgress, [0.66, 1], ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]);
+  const imgScale = useTransform(scrollYProgress, [0.999999, 1], [1, 0.9]); 
+  // حركة الخط
+  const lineX1 = useTransform(scrollYProgress, [0.33, 0.66], [0, screenWidth]);
+  const lineX2 = useTransform(scrollYProgress, [0.66, 1], [0, screenWidth]);
+
   return (
-    <section className="photo-section" ref={sectionRef}>
-      {[img1, img2, img3].map((src, i) => (
-        <div
-          className="image-container"
-          key={i}
-          ref={(el) => (imagesRef.current[i] = el)}
-        >
-          <img src={src} alt={`Image ${i + 1}`} />
-        </div>
-      ))}
+    <div className="PhotoSection">
+    <section className="videoSection" ref={sectionRef}>
+      <div className="stickyWrapper" >
+        <motion.div className="image-inner" style={{scale: imgScale }}>
+          {/* الصورة الأولى */}
+          <img src={img1} alt="Style 1" />
+
+          {/* الصورة الثانية */}
+          <motion.img src={img2} alt="Style 2" style={{ clipPath: img2Clip }} />
+
+          {/* الصورة الثالثة */}
+          <motion.img src={img3} alt="Style 3" style={{ clipPath: img3Clip }} />
+
+          {/* الخط */}
+          <motion.div className="reveal-line" style={{ x: lineX1 }} />
+          <motion.div className="reveal-line" style={{ x: lineX2 }} />
+        </motion.div>
+      </div>
     </section>
+          <p>Our latest generation of Photographic Styles gives you greater creative flexibility than ever before, so you can make every photo even more you. And thanks to advances in our image pipeline, you can now reverse any style, anytime.</p>
+
+    </div>
   );
 }

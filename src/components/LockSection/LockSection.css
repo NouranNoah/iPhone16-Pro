@@ -1,143 +1,105 @@
 .LockSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100vh;
-  background: #000;
-  color: #fff;
-  padding: 0 8%;
-  width: 100%;
-  font-weight: 600;
+  height: 300vh; 
   position: relative;
-  overflow: hidden;
+  margin-bottom: 30%;
+  color: rgba(255, 255, 255, 0.576);
 }
+
+.stickyWrapperr {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+  gap: 15%;
+  padding: 0 10%;
+}
+
 
 .textLock {
-  width: 43%;
-  min-height: 350px;
   position: relative;
+  height: 100vh;      /* مساحة النصوص */
+  overflow: hidden;
+  flex: 2;
 }
 
-.textLock h3 {
-  font-size: 35px;
-  margin-bottom: 5%;
-  margin-top: -5%;
+.divText {
+  width: 100%;
+  transform: translateY(-100%); /* يوسّط النص */
+  text-align: left;
+  position: absolute;
+  top: 25%;
 }
 
-.textLock p {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.6);
+.hidediv{
+  position: relative;
+   height: 100%;
+}
+
+.textLock h1{
+  font-size: 50px;
+  padding: 20px 0;
+  color: white;
+}
+.textLock p{
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.796);
 }
 
 .imgLock {
-  width: 35%;
-  height: 80vh;
-  min-height: 600px;
-  position: relative; 
-}
-
-.imgLock img {
-  width: 70%;
+  position: relative;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
+  flex: 1;
 }
 
-.text-slide,
 .img-slide {
   position: absolute;
-  left: 0;
-  top: -10;
-  opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
-  transform: translateY(50px);
-}
-
-.textLock .text-slide {
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
   width: 100%;
+  height:fit-content;
+  object-fit: cover;
 }
+ 
 
-.text-slide:first-child,
-.img-slide:first-child {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-/* ====== Responsive ====== */
-@media (max-width: 1024px) {
-  .LockSection {
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    padding: 0 4%;
-    height: auto;
-    min-height: 100vh;
-  }
 
-  .textLock {
-    width: 85%;
-    margin-top: 5%;
-    text-align: center;
-  }
 
-  .textLock h3 {
+@media (max-width: 768px) {
+
+.textLock h1 {
     font-size: 30px;
   }
-
   .textLock p {
-    font-size: 20px;
+    font-size: 23px;
   }
-
-  .imgLock {
-    width: 90%;
-    max-height: 45vh;
+  .stickyWrapperr{
+    flex-direction:column-reverse;
   }
-
-  .imgLock img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .img-slide {
+    
+    padding: 0 30%;
+  }
+  .divText{
+    position: relative;
+  }
+  .divText.tt{
+    margin-top: -50%;
   }
 }
 
-@media (max-width: 480px) {
-  .LockSection {
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding: 0 16px;
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .textLock {
-    width: 90%;
-    margin-top: 5%;
-    text-align: center;
-  }
-
-  .textLock h3 {
-    font-size: 26px;
-  }
-
-  .textLock p {
-    font-size: 16px;
-  }
-
-  .imgLock {
-    width: 75%;
-    max-height: 40vh;
-  }
-
-  .imgLock img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+@media (max-width: 468px) {
+    .PhotoSection p {
+        font-size: 17px;
+    }
+    .textLock p {
+        font-size: 20px;
+    }
+    .textLock h1 {
+        font-size: 28px;
+    }
+    .divText.tt{
+    margin-top: -170%;
   }
 }

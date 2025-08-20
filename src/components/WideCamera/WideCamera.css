@@ -1,117 +1,112 @@
 .wide-camera {
   text-align: center;
   background-color: black;
-  padding: 15%;
-  color: rgba(255, 255, 255, 0.759);
+  padding: 10% 8%;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.main-image {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .main-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 20px;
 }
 
 .main-image h3 {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .wide-camera p {
   color: white;
   margin-top: 5%;
+  font-size: 20px;
+  line-height: 1.6;
 }
 
 .thumbnails {
   display: flex;
   align-items: center;
-  gap: 30px;
+  justify-content: center;
+  gap: 45px;
   background-color: rgba(66, 66, 69, 0.8);
-  margin-left: 13%;
-  margin-right: 13%;
-  margin-top: 30px;
-  padding: 15px 20px;
+  margin: 30px auto;
+  padding: 10px 10px;
   border-radius: 35px;
-  overflow-x: auto; 
+  overflow-x: auto;
   overflow-y: hidden;
-  white-space: nowrap; 
-  scroll-behavior: smooth; 
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  max-width: fit-content;
 }
 
-/* تنسيق الـ scrollbar */
+
 .thumbnails::-webkit-scrollbar {
   display: none;
 }
 
-.thumbnails::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
-}
-
-.thumbnails::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-
 .thumbnail {
   cursor: pointer;
   text-align: center;
+  flex: 0 0 auto; 
+  transition: all 0.3s ease;
 }
 
 .thumbnail img {
-  width: 80px;
+  width: 70px;
   height: 60px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 2px solid transparent;
-  transition: border 0.3s;
+  transition: border 0.3s, transform 0.3s;
 }
 
 .thumbnail.active img {
   border-color: #007bff;
+  transform: scale(1.05);
 }
 
 .thumbnail span {
   display: block;
-  font-size: 20px;
-  margin-top: 0px;
-}
-.thumbnail.active{
-    background-color: white;
-    border-radius: 30px;
-    color: black;
-    padding: 6px 20px;
-}
-.main-image{
-  margin: 0 10%;
+  font-size: 24px;
+  margin-top: 5px;
 }
 
-/* ///////////////////////////////////////////////////////////// */
+.thumbnail.active {
+  background-color: white;
+  border-radius: 35px;
+  color: black;
+  padding:10px 30px;
+}
+
+/* Camera Section */
 .camera-section {
   display: flex;
-  justify-content:right;
+  justify-content: space-between;
   align-items: center;
   background-color: black;
-  padding: 50px 7%;
-  margin-bottom: 6%;
-  color: rgba(255, 255, 255, 0.495);
-  margin-top: -10%;
-  gap: 10%; 
+  padding: 60px 8%;
+  margin: 5% auto;
+  color: rgba(255, 255, 255, 0.7);
+  gap: 8%;
+  flex-wrap: wrap;
 }
 
 .text-side {
   flex: 1;
-  margin-left: 13%;
-}
-.camera-video{
-  flex: 2;
+  min-width: 280px;
 }
 
 .text-side p {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
   line-height: 1.6;
-  padding: 10%;
-  padding-right: 0;
+  margin-bottom: 20px;
 }
 
 .text-side strong {
@@ -119,8 +114,10 @@
   color: white;
 }
 
+.camera-video,
 .image-side {
-  flex: 2;
+  flex: 1;
+  min-width: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,158 +125,50 @@
 
 .main-img {
   width: 100%;
+  max-width: 600px;
   height: auto;
   object-fit: contain;
+  border-radius: 20px;
   transition: opacity 0.4s ease;
-}
-
-.fade-out {
-  opacity: 1;
 }
 
 .fade-in {
   opacity: 1;
-  animation: quickFade 0.25s ease-in-out; /* إحساس التغيير السريع */
+  animation: quickFade 0.25s ease-in-out;
 }
 
 @keyframes quickFade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
-/* Responsive Wide Camera & Camera Section */
+
+/* ✅ ريسبونسيف */
 @media (max-width: 1024px) {
-  .wide-camera {
-    padding: 10%;
-  }
-  .camera-video{
-    width: 50%;
-  }
-
-  .wide-camera p {
-    font-size: 18px;
-  }
-
-  .thumbnails {
-    gap: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 12px 15px;
-  }
-
-  .thumbnail img {
-    width: 70px;
-    height: 50px;
-  }
-
-  .thumbnail span {
-    font-size: 18px;
-  }
-
-  .camera-section {
-    padding: 40px 8%;
-  }
-
-  .text-side p {
-    font-size: 12px;
-    max-width: 400px;
-  }
-
-  .image-side {
-    max-width: 400px;
-  }
-  .text-side{
-    margin-left: 5%;
-  }
+  .wide-camera { padding: 8%; }
+  .thumbnails { gap: 15px; padding: 12px 15px; }
+  .thumbnail img { width: 70px; height: 50px; }
+  .text-side p { font-size: 18px; }
 }
 
 @media (max-width: 768px) {
-  .wide-camera {
-    padding: 8%;
-  }
-  .camera-section video{
-  width: 100%;
-  }
-  .wide-camera p {
-    font-size: 16px;
-  }
-  .camera-section video {
-    margin-top: 7%;
-  }
-
-  .thumbnails {
-    gap: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 10px 12px;
-  }
-
-  .thumbnail img {
-    width: 60px;
-    height: 45px;
-  }
-
-  .thumbnail span {
-    font-size: 16px;
-  }
-
   .camera-section {
     flex-direction: column;
-    padding: 40% 5%;
-    align-items:start;
-    justify-content: left;
-    margin-top: 10%;
-    margin-bottom: 0;
-  }
-
-  .text-side {
-    padding-left: 0;
-    margin-right: 0;
     text-align: center;
-    flex: 0;
-    margin-top: 5%;
-    text-align: left;
-    margin-left: 0;
+    gap: 40px;
+    padding: 40px 5%;
   }
-
   .text-side p {
     font-size: 18px;
-    max-width: 100%;
-    padding: 0;
   }
-
-  .image-side {
-    max-width: 100%;
-    margin-top: 10%;
+  .main-img {
+    max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
-  .wide-camera {
-    padding: 5%;
-  }
-
-  .wide-camera p {
-    font-size: 17px;
-  }
-
-  .thumbnail img {
-    width: 50px;
-    height: 40px;
-  }
-
-  .thumbnail span {
-    font-size: 14px;
-  }
-
-  .camera-section {
-    padding: 20px 5%;
-  }
-
-  .text-side p {
-    font-size: 17px;
-  }
+  .wide-camera { padding: 5%; }
+  .thumbnails { gap: 10px; padding: 8px 10px; }
+  .thumbnail img { width: 55px; height: 40px; }
+  .thumbnail span { font-size: 12px; }
+  .text-side p { font-size: 16px; }
 }
