@@ -1,204 +1,3 @@
-/* .cinemaWrapper {
-  height: 130vh;
-  background-color: black;
-  padding: 0;
-  padding-bottom: 30px;
-  text-align: center;
-  position: relative;
-}
-.cinemaSection {
-  position: sticky;
-  top: 0;
-  left: 0%;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
-}
-
-
-.cinemaSection {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.videoOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.22);
-  z-index: 1;
-}
-
-
-.vidCinema {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.8s ease;
-  z-index: 0; 
-}
-
-.imgCinema {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transform-origin: center;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  max-width: 90vw;
-  max-height: 90vh;
-  z-index: 2; 
-}
-
-.cinemaWrapper h1 {
-  font-size: 70px;
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  transform: translateY(-50%);
-  z-index: 3;
-  color: white;
-  width: 80%;
-  opacity: 1;
-}
-
-
-.cinemaText {
-  color: rgba(255, 255, 255, 0.46);
-  font-size: 14px;
-  position: absolute;
-  bottom: 20%;
-  opacity: 0;
-  transform: translateY(30px); 
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.cinemaText.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
-.qualityVideo{
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 15%;
-  padding-bottom: 10px;
-  background-color: black;
-}
-.qualityVideo .textVideo{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-.textVideo p{
-  flex: 1;
-  font-size: 20px;
-}
-.textVideo h2{
-  padding: 0 5%;
-  flex: 1;
-  font-size: 40px;
-  margin-bottom: 15%;
-}
-.qualityVideo .textVideo span, .qualityVideo h2{
-  color: white;
-}
-.qualityVideo .textVideo p{
-  color: rgba(255, 255, 255, 0.451);
-}
-
-@media (max-width: 768px) {
-  .cinemaSection{
-    height: 80vh;
-  }
-  .cinemaSection h1{
-    font-size: 50px;
-  }
-  .qualityVideo .textVideo {
-    flex-direction: column;
-  }
-  .textVideo h2 {
-    font-size: 28px;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .textVideo p{
-    font-size: 20px;
-  }
-  .cinemaWrapper{
-    height: 70vh;
-  }
-  .qualityVideo {
-    gap: 60px;
-    flex-direction: column;
-    padding-bottom: 25%;
-  }
-  .cinemaWrapper h1 {
-    font-size: 36px;
-    top: 15%;
-    left: 5%;
-    width: 90%;
-  }
-  .imgCinema {
-    width: 100%;
-    height: 100%;
-  }
-} 
-
-
-@media (max-width: 1024px) {
-  .cinemaWrapper h1 {
-    font-size: 50px;
-    top: 18%;
-    left: 8%;
-    width: 85%;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .cinemaWrapper h1 {
-    font-size: 35px;
-    top: 42%;
-    left: 5%;
-    width: 95%;
-  }
-  .cinemaText {
-    padding: 0 10%;
-  }
-} */
-/* .videoSection {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.videoSection video,
-.videoSection img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0; 
-} */
 
 
 .videoSection {
@@ -213,14 +12,16 @@
   overflow: hidden;
 }
 
-.bgMedia {
+.bgMedia, .bgimg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;   /* يغطي دايمًا */
+  object-position: center; /* يظبط في النص */
 }
+
 
 /* التيتل */
 .videoTitle {
@@ -305,27 +106,47 @@
 }
 
 @media (max-width: 768px) {
+  .bgMedia {
+    object-position: top center; /* يبين الجزء المهم فوق */
+  }
+
   .videoTitle {
     top: 25%;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.3rem, 5vw, 2rem);
     width: 90%;
+    text-align: center;
   }
 
   .videoParagraph {
     bottom: 10%;
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(0.85rem, 3vw, 1.1rem);
     max-width: 90%;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
+  .bgimg {
+    object-position: center; 
+    object-fit: contain;
+  }
+  .bgMedia{
+    object-fit: fill;
+  }
+
   .videoTitle {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     line-height: 1.3;
+    left: 5%;
   }
 
   .videoParagraph {
-    font-size: 1rem;
-    bottom: 12%;
+    font-size: 0.9rem;
+    left: 5%;
+    bottom: 25%;
   }
 }

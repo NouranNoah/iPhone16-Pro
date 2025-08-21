@@ -1,50 +1,51 @@
 .wide-camera {
   text-align: center;
   background-color: black;
-  padding: 10% 8%;
+  padding: 6% 6%; /*  كان 10% 8% */
   color: rgba(255, 255, 255, 0.8);
 }
 
 .main-image {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1000px; /*  كان 1200px */
 }
 
 .main-image img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 18px; /* 🔽 كان 20px */
+  display: block; /* ✅ يمنع أي overflow */
 }
 
 .main-image h3 {
   margin-top: 10px;
-  font-size: 22px;
+  font-size: 20px; /* 🔽 أصغر */
 }
 
 .wide-camera p {
   color: white;
-  margin-top: 5%;
-  font-size: 20px;
-  line-height: 1.6;
+  margin-top: 4%; /* 🔽 كان 5% */
+  font-size: 18px; /* 🔽 أصغر */
+  line-height: 1.5;
 }
 
 .thumbnails {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 45px;
+  gap: 25px; /* 🔽 كان 45px */
   background-color: rgba(66, 66, 69, 0.8);
-  margin: 30px auto;
-  padding: 10px 10px;
-  border-radius: 35px;
+  margin: 25px auto;
+  padding: 8px 12px; /* 🔽 أخف */
+  border-radius: 30px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
   max-width: fit-content;
+  scroll-snap-type: x mandatory; /* ✅ سحب أنعم */
 }
-
 
 .thumbnails::-webkit-scrollbar {
   display: none;
@@ -53,15 +54,15 @@
 .thumbnail {
   cursor: pointer;
   text-align: center;
-  flex: 0 0 auto; 
-  transition: all 0.3s ease;
+  flex: 0 0 auto;
+  scroll-snap-align: center; /* ✅ يتمركز عند الوقوف */
 }
 
 .thumbnail img {
-  width: 70px;
-  height: 60px;
+  width: 60px; /* 🔽 كان 70px */
+  height: 50px; /* 🔽 كان 60px */
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px; /* 🔽 كان 10px */
   border: 2px solid transparent;
   transition: border 0.3s, transform 0.3s;
 }
@@ -73,40 +74,42 @@
 
 .thumbnail span {
   display: block;
-  font-size: 24px;
+  font-size: 20px; /* 🔽 أصغر */
   margin-top: 5px;
 }
 
 .thumbnail.active {
   background-color: white;
-  border-radius: 35px;
+  border-radius: 30px;
   color: black;
-  padding:10px 30px;
+  padding: 8px 20px; /* 🔽 أصغر */
 }
 
 /* Camera Section */
 .camera-section {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: black;
-  padding: 60px 8%;
-  margin: 5% auto;
+  padding: 40px 8%; /* 🔽 كان 60px 8% */
+  margin: 4% auto; /* 🔽 كان 5% */
   color: rgba(255, 255, 255, 0.7);
-  gap: 8%;
+  gap: 6%; /* 🔽 كان 8% */
   flex-wrap: wrap;
 }
 
 .text-side {
   flex: 1;
-  min-width: 280px;
+  min-width: 260px; /* 🔽 كان 280px */
 }
 
 .text-side p {
-  font-size: 22px;
+  font-size: 22px; /* 🔽 كان 22px */
   font-weight: 500;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  margin-left: 5%;
+  line-height: 1.5;
+  margin-bottom: 15px; /* 🔽 أصغر */
 }
 
 .text-side strong {
@@ -117,7 +120,7 @@
 .camera-video,
 .image-side {
   flex: 1;
-  min-width: 280px;
+  min-width: 260px; /* 🔽 كان 280px */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,10 +128,10 @@
 
 .main-img {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px; /* 🔽 كان 600px */
   height: auto;
   object-fit: contain;
-  border-radius: 20px;
+  border-radius: 18px; /* 🔽 كان 20px */
   transition: opacity 0.4s ease;
 }
 
@@ -144,31 +147,28 @@
 
 /* ✅ ريسبونسيف */
 @media (max-width: 1024px) {
-  .wide-camera { padding: 8%; }
-  .thumbnails { gap: 15px; padding: 12px 15px; }
-  .thumbnail img { width: 70px; height: 50px; }
-  .text-side p { font-size: 18px; }
+  .wide-camera { padding: 5%; }
+  .thumbnails { gap: 12px; padding: 10px; }
+  .thumbnail img { width: 55px; height: 45px; }
+  .text-side p { font-size: 17px; }
 }
 
 @media (max-width: 768px) {
   .camera-section {
-    flex-direction: column;
     text-align: center;
-    gap: 40px;
-    padding: 40px 5%;
+    gap: 30px;
+    padding: 30px 5%;
   }
-  .text-side p {
-    font-size: 18px;
-  }
-  .main-img {
-    max-width: 90%;
-  }
+  .text-side p { font-size: 17px; }
+  .main-img { max-width: 85%; }
 }
 
 @media (max-width: 480px) {
-  .wide-camera { padding: 5%; }
-  .thumbnails { gap: 10px; padding: 8px 10px; }
-  .thumbnail img { width: 55px; height: 40px; }
+  .wide-camera { padding: 4%; }
+  .thumbnails { gap: 8px; padding: 6px; }
+  .thumbnail img { width: 50px; height: 35px; }
   .thumbnail span { font-size: 12px; }
-  .text-side p { font-size: 16px; }
+  .text-side p { font-size: 15px; }
+  .main-img { max-width: 45%; }
+
 }

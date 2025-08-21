@@ -25,8 +25,9 @@ export default function ImageReveal() {
   const img3Clip = useTransform(scrollYProgress, [0.66, 1], ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]);
   const imgScale = useTransform(scrollYProgress, [0.999999, 1], [1, 0.9]); 
   // حركة الخط
-  const lineX1 = useTransform(scrollYProgress, [0.33, 0.66], [0, screenWidth]);
-  const lineX2 = useTransform(scrollYProgress, [0.66, 1], [0, screenWidth]);
+  const lineX1 = useTransform(scrollYProgress, [0.33, 0.66], [0, screenWidth * 0.99999]);
+  const lineX2 = useTransform(scrollYProgress, [0.66, 1], [0, screenWidth * 0.999999]);
+
 
   return (
     <div className="PhotoSection">

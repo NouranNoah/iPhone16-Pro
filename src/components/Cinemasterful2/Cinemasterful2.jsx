@@ -94,7 +94,7 @@
 // }
 
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import img1File from "../../assets/hero_camera__d95g9w2nnyye_large.jpg";
 import imageFile from "../../assets/Group 2.png";
@@ -102,7 +102,20 @@ import imgFileRes from '../../assets/Group 3.png'
 
 export default function Cinemasterful2() {
   const sectionRef = useRef(null);
-  
+
+
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 734);
+   useEffect(() => {
+     // listener لتغيير الصورة عند تغيير حجم الشاشة
+     const handleResize = () => {
+       setIsSmallScreen(window.innerWidth <= 734);
+     };
+     window.addEventListener("resize", handleResize);
+     return () => window.removeEventListener("resize", handleResize);
+   }, []);
+
+
+
   // متابعة الاسكرول
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -148,7 +161,7 @@ const imageScale = useTransform(scrollYProgress, [0.1, 1], [2, 0.5]);
 
         {/* الصورة */}
         <motion.img
-          src={imageFile}
+          src={isSmallScreen ? imgFileRes : imageFile}
           alt="reveal"
           style={{ opacity: imageOpacity, scale: imageScale }}
           className="bgMedia"

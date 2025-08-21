@@ -44,20 +44,16 @@ export default function Home() {
       <StrengthBeauty />
       <CameraControl />
       <Space />
-      {/* <Cinemasterful /> */}
       <Qualityvideo />
-      {/* <Phone3 /> */}
       <AudioMix />
       <Cinemasterful2 />
       <TextCine />
       <WideCamera />
-      {/* <SSS /> */}
       <PhotographicStyle />
       <LockSection />
       <A18ProSection />
       <GamingSection />
       <Significant />
-      {/* <UpgradeSection /> */}
       <StellarSection />
       <SectioniOS18 />
       <Shape3D />
